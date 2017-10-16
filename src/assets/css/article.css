@@ -1,0 +1,42 @@
+.article-list{padding: 5px 0; background-color: #fff; border-radius: 2px;font-size: 12px;}
+.article-list li:last-child{border-bottom: none;}
+
+.article-list .article-list-li{position: relative; height: 120px; margin-top: 0; padding: 10px 0 10px 75px; border-bottom: 1px dotted #E9E9E9;}
+.article-list-li .article-list-avatar{position: absolute; left: 15px; top: 10px;}
+.article-list-li h2{line-height: 26px; font-size: 0;}
+.article-list-li h2 *{display: inline-block; *display: inline; *zoom: 1; vertical-align: top;}
+.article-list-li h2 a{max-width: 86%; margin-left: 100px; margin-right: 10px;overflow: hidden; color:#333;text-overflow: ellipsis; white-space: nowrap; font-size: 16px;}
+.article-list-li h2 span{position: relative; top: 3px; margin-left: 5px;}
+.article-list-li a:hover{color: #009E94;}
+.article-list-li p{position: relative; line-height: 20px; margin-left: 100px;font-size: 12px; color: #999;margin-top:10px; }
+.article-list-li p span{padding-right: 15px;}
+.article-list-li p span a{color: #999;}
+.article-list-avatar img{width: 120px; height: 100px}
+.article-list-hint{position: absolute; right: 0; top: -2px;}
+.article-list-hint i{padding-left: 10px; padding-right:5px;font-size:18px;color: #ccc;vertical-align: middle;}
+.article-list-li .article-abstract{position: relative; line-height: 24px; margin-left: 100px;margin-right: 10px;font-size: 13px;color:#333;font-weight:bold;overflow:hidden; text-overflow:ellipsis;
+                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+
+/* Tip标签 */
+.article-tip{position: relative;}
+.article-tip span{display: inline-block; *display: inline; *zoom: 1; vertical-align: top;}
+.article-tip span{height: 20px; line-height: 20px; padding: 0 5px; background-color: #999; color: #fff; font-size: 12px; border-radius: 0;}
+.article-tip .article-tip-stick{background-color: #393D49;}
+.article-tip .article-tip-jing{background-color: #c00;}
+.article-tip .article-tip-jie{background-color: #8FCDA0;}
+
+.personal-content{ position: relative;min-height: 250px; margin: 15px;overflow: hidden;background: #fff;border-radius: 4px;}
+.personal-avatar{position: absolute;top:20px;width:100%; text-align: center}
+.personal-avatar img{width: 80px; height: 80px;border-radius:40px;}
+.motto{position: absolute;top:120px;width:100%;text-align: center;margin-bottom:5px;border-bottom: 1px solid #E9E9E9;}
+.motto h2{text-align: center;margin-bottom:5px;}
+
+.contact{position: absolute; bottom: 10px;width:100%;text-align: center;}
+.contact i{padding: 20px;color: #4B505E}
+
+.hot-content{ position: relative;min-height: 200px; margin: 15px;overflow: hidden;background: #fff;border-radius: 4px;}
+.hot-content .title{position: absolute; top:10px;width:100%;border-bottom: 1px solid #E9E9E9;}
+.hot-content .title a{color:#333;margin-left:15px;font-size: 14px}
+.hot-content-main{ position: absolute; top:40px;margin-left: 15px}
+.hot-content-main li{list-style-type: disc;list-style-position: inside;margin-bottom: 5px}
+.hot-content-main li a{padding: 10px 15px;font-size: 16px;font-weight:500;}
