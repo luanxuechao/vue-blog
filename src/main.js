@@ -9,6 +9,7 @@ import './assets/css/article.css'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import 'github-markdown-css/github-markdown.css'
+import './assets/css/articleDetail.css'
 
 Vue.use(iview);
 Vue.use(mavonEditor)

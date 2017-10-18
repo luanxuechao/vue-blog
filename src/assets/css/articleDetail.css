@@ -1,0 +1,17 @@
+.article-detail-hint{margin: 5px 0 15px;}
+.article-detail-hint .layui-btn+.layui-btn{margin-left: 0;}
+.article-tip{position: relative;}
+.article-tip span{display: inline-block; *display: inline; *zoom: 1; vertical-align: top;}
+.article-tip span{height: 20px; line-height: 20px; padding: 0 5px; background-color: #999; color: #fff; font-size: 16px; border-radius: 0;}
+.article-tip .article-tip-stick{background-color: #393D49;}
+.article-tip .article-tip-jing{background-color: #c00;}
+.article-tip .article-tip-jie{background-color: #8FCDA0;}
+
+.article-panel{background-color: #fff; border-radius: 2px;}
+.article-panel[pad20]{padding: 20px;}
+.article-panel-title{position: relative; height: 40px; line-height: 40px; padding: 0 15px; margin-bottom: 5px; background-color: #f8f8f8; color: #333; border-radius: 2px 2px 0 0; font-size: 14px;}
+
+.detail-box{margin-bottom: 15px; padding: 20px;}
+.detail h1{font-size: 24px; line-height: 30px; padding: 5px 0;}
+
+
