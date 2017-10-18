@@ -13,5 +13,95 @@
 
 .detail-box{margin-bottom: 15px; padding: 20px;}
 .detail h1{font-size: 24px; line-height: 30px; padding: 5px 0;}
+.detail-about{position:relative; margin-top:5px; line-height:20px; background-color: #F2F2F2; padding: 15px; color:#999;}
+.detail-about span,
+.jie-about span,
+.detail-about .jie-user{margin-right:10px; display:inline-block; *display:inline; *zoom:1; vertical-align:top; font-size:12px;}
+.detail-about .jie-status, .detail-about .jie-status-ok{color:#fff;}
+.detail-about .article-jing{padding:0 6px; background-color:#c00; color:#fff;}
+.detail-about .jie-user{position:relative;}
+.detail-about .jie-user cite{top: -3px; left: 56px; width: 260px; color: #4f99cf; font-size: 14px;}
+.detail-about .jie-user cite em{padding-left:5px; color:#999; cursor:default; font-size:12px; font-style: normal;}
+.detail-about .jie-user img{position: relative; display: block; margin: 0; top: 0; border-radius: 2px;}
+.detail-hits{position:absolute; left: 71px; bottom: 15px; font-size: 0;}
+.detail-hits span{margin-top: 0; font-size: 12px;}
+.detail-hits .layui-btn{border-radius: 0;}
+.detail-hits .layui-btn+.layui-btn{margin-left: 5px;}
+.detail-hits .jie-admin{margin-right: 1px;}
+.detail-body{margin: 20px 0 50px; min-height: 202px; line-height:26px; font-size:16px; word-wrap: break-word;}
+.detail-body p{margin-bottom:15px;}
+.detail-body a{color:#4f99cf;}
+.detail-body img{max-width: 100%; cursor: crosshair;}
+.detail-body table{margin: 10px 0 15px;}
+.detail-body table thead{background-color:#f2f2f2;}
+.detail-body table th,
+.detail-body table td{padding: 10px 20px; line-height: 22px; border: 1px solid #DFDFDF; font-size: 14px; font-weight: 400;}
+.detail-about-reply{background: none; padding: 0;}
+.detail-about-reply .detail-hits{left: 56px; bottom: 0;}
+.detail .page-title{ border: none; background-color: #f2f2f2;}
+.jie-row li{position: relative; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dotted #E9E9E9; font-size: 0;}
+.jie-row li *{display:inline-block; *display:inline; *zoom:1; vertical-align:top; line-height: 24px; font-size:12px;}
+.jie-row li span{height: 24px; line-height: 24px; padding: 0 10px; margin-right: 10px; background-color: #DADADA; color:#fff; font-size:12px;}
+.jie-row li .fly-stick{background-color:#393D49;}
+.jie-row li .fly-jing{background-color:#CC0000;}
+.jie-row li .jie-status{margin:0 10px 0 0;}
+.jie-row li .jie-status-ok{background-color:#8FCDA0;}
+.jie-row li a{ padding-right:15px; font-size:14px;}
+.jie-row li cite{padding-right:15px;}
+.jie-row li i, .jie-row li em, .jie-row li cite{font-size:12px; color:#999; font-style: normal;}
+.jie-row li .mine-edit{margin-left:15px; padding:0 6px; background-color: #8FCDA0; color:#fff; font-size:12px;}
+.jie-row li em{position:absolute; right:0; top:0;}
+.jie-row li .jie-user{}
+.jie-row li .jie-title{max-width: 330px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.jie-row li .jie-user img{position:relative; top: 16px; width: 35px; height: 35px;}
 
+.jie-add{position:absolute; right:0; top:0; font-size:14px;}
+.jie-list li h2 span{display:inline-block; *display:inline; *zoom:1; vertical-align:top;}
+.jie-list li{position:relative; margin-bottom:0; padding:10px 0 10px 60px; border-bottom:1px dotted #E9E9E9}
+.jie-user img{position:absolute; left:0; top:50%; width:46px; height:46px; margin-top:-23px;}
+.jie-user cite{position:absolute; right:0; top:10px; line-height:26px; color:#999;}
+.jie-user cite i{font-style: normal;}
+.jie-list li h2{margin-right:80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.jie-list li h2 a{font-size:16px; line-height:28px;}
+.jie-list li h2 span{position:relative; top:4px; height:20px; line-height:20px; padding:0 10px; margin-left:10px; font-size:12px; background-color:#393D49; color:#fff; }
+.jie-list li h2 .fly-jing{padding:0 6px; background-color:#c00;}
+.jie-about{position:relative; margin-top:5px; line-height:26px; font-size:0; color:#666;}
 
+.jie-status{line-height:20px; margin-top:3px; padding:0 8px; background-color:#ccc;}
+.jie-status-ok{background-color:#8FCDA0;}
+.jie-about .jie-status, .jie-about .jie-status-ok{color:#fff;}
+.jie-about span{color:#999;}
+.jie-about .jie-hits{position:absolute; right:0; top:0; margin:0;}
+.jie-hits *{padding-left:15px;}
+
+.jie-form{width:860px;}
+.jie-form .jie-addexp{margin-left:15px;}
+.jie-form .jie-addexp span{color:#FF7200;}
+.jie-form .jie-addexp .layui-form-sltitle{width:55px;}
+.jie-form .jie-addexp li a{min-width:87px;}
+
+/* 求解管理 */
+.jie-admin{cursor:pointer;}
+.detail-hits .jie-admin{color:#fff; padding:0 10px; }
+.detail-hits .jie-admin a{color:#fff;}
+.jieda-admin{position:absolute; right:0; top:0;}
+
+/* 回答 */
+.jieda{margin-bottom: 30px;}
+.jieda li{position: relative; padding: 20px 0 10px; border-bottom:1px dotted #DFDFDF;}
+.jieda li:last-child{border-bottom: none;}
+.jieda .fly-none{height: 50px; min-height: 0; padding: 50px 0 0;}
+.jieda .icon-caina{position:absolute; right:10px; top:15px; font-size:60px; color: #58A571;}
+
+.jieda-body{margin: 25px 0 20px; min-height: 0; line-height: 24px; font-size:14px;}
+.jieda-body p{margin-bottom: 10px;}
+.jieda-body a{color:#4f99cf}
+.jieda-reply{position:relative;}
+.jieda-reply span{padding-right:20px; color:#999; cursor:pointer;}
+.jieda-reply span:hover{color:#666;}
+.jieda-reply span i{margin-right:5px; font-size:16px;}
+.jieda-reply span em{font-style: normal;font-size:18px}
+.jieda-reply span .icon-zan{font-size: 22px;}
+.jieda-reply .zanok,
+.jieda-reply .jieda-zan:hover{color:#c00}
+.jieda-reply span .icon-svgmoban53{position: relative; top: 1px;}
