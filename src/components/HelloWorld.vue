@@ -2,20 +2,20 @@
   <div class="hello">
     <Row>
       <Col span="12" offset="2" style='min-width:470px;margin-top: 15px;'>
-      <ul class="article-list">
+      <ul class="article-list"  >
         <li class="article-list-li">
-          <a href="user/home.html" class="article-list-avatar">
+          <a  class="article-list-avatar">
             <img src="../assets/images/default.png" alt="">
           </a>
           <h2 class="article-tip">
-            <a href="jie/detail.html">这是标题</a>
+            <a  v-on:click="goArticle">这是标题</a>
           </h2>
           <p class="article-abstract">
             这是文章内容的简介部分！！！！！！！！阿斯达啊撒 啊是 阿斯达 阿斯达 的飒飒大胆看上了你懒惰了哪里你了那里看到哪里；是你的；案例可能的；按啦啦你拉倒了你懒死了哪里你看了哪里阿兰的李娜；李达康哪里看你兰兰你拉拉手哪里哪里呢
           </p>
           <p>
             <span>
-              <a href="user/home.html">用户昵称</a>
+              <a >用户昵称</a>
             </span>
             <span>1小时前</span>
             <span>js问题集合</span>
@@ -209,7 +209,8 @@
       <Col span="8" offset="1">
       <div class="personal-content">
         <div class="personal-avatar">
-          <img src="../assets/images/timg.jpeg" alt="">
+          <img src="../assets/images/timg.jpeg" alt=""/>
+          <a>Chevalier</a>
         </div>
         <div class="motto">
           <h2>
@@ -336,6 +337,9 @@ export default {
         return return_array;
       }
       this.randomMovieList = getArrayItems(this.movieList, 5);
+    },
+    goArticle(){
+      this.$router.push({ path: '/ArticleDetail' });
     }
   },
   mounted() {

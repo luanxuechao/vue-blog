@@ -6,8 +6,12 @@ import router from './router'
 import iview from 'iview'
 import  'iview/dist/styles/iview.css'
 import './assets/css/article.css'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+import 'github-markdown-css/github-markdown.css'
 
 Vue.use(iview);
+Vue.use(mavonEditor)
 
 Vue.config.productionTip = false
 
@@ -16,5 +20,5 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: {App }
 })
