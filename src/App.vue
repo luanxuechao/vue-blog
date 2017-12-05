@@ -52,7 +52,7 @@
 <template>
     <div id="app">
         <div class="layout">
-            <Menu mode="horizontal" theme="dark" active-name="1">
+            <Menu mode="horizontal" theme="dark" active-name="1" @on-select="goTimeLine">
                 <div class="layout-logo">
                 </div>
                 <div class="layout-nav">
@@ -60,8 +60,8 @@
                     <Icon type="ios-navigate"></Icon>
                     首页
                     </MenuItem>
-                    <MenuItem name="2">
-                    <Icon type="ios-calendar"></Icon>
+                    <MenuItem name="2"  >
+                    <Icon type="ios-calendar" ></Icon>
                     时间轴
                     </MenuItem>
                     <MenuItem name="4">
@@ -75,7 +75,7 @@
                 </div>
             </Menu>
             <router-view />
-            <div class="layout-copy">
+            <div class="layout-copy" v-on:click="goTimeLine">
                 2011-2016 &copy; TalkingData
             </div>
         </div>
@@ -84,6 +84,22 @@
 
 <script>
 export default {
-    name: 'app'
+    name: 'app',
+    methods: {
+    goTimeLine(name){
+        console.log(name);
+        switch(name){
+            case '1':
+               this.$router.push({ path: '/' });
+                break;
+            case '2':
+               this.$router.push({ path: '/TimeLine' });
+                break;
+        }
+    //
+    // alert(name);
+    // alert(222);
+    }
+}
 }
 </script>
