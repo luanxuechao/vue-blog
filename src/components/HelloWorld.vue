@@ -206,11 +206,11 @@
 
       </ul>
       </Col>
-      <Col span="8" offset="1">
+      <Col span="6" offset="2">
       <div class="personal-content">
         <div class="personal-avatar">
           <img src="../assets/images/timg.jpeg" alt=""/>
-          <a>Chevalier</a>
+          <p>Chevalier</p>
         </div>
         <div class="motto">
           <h2>

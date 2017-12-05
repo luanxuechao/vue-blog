@@ -25,16 +25,17 @@
 .article-tip .article-tip-jing{background-color: #c00;}
 .article-tip .article-tip-jie{background-color: #8FCDA0;}
 
-.personal-content{ position: relative;min-height: 250px; margin: 15px;overflow: hidden;background: #fff;border-radius: 4px;}
-.personal-avatar{position: absolute;top:20px;width:100%; text-align: center}
+.personal-content{ position: relative;min-height: 250px;min-width:320px; margin-top: 15px;background: #fff;border-radius: 4px;}
+.personal-avatar{position: absolute;left:50%;transform: translate(-50%)}
 .personal-avatar img{width: 80px; height: 80px;border-radius:40px;}
-.motto{position: absolute;top:120px;width:100%;text-align: center;margin-bottom:5px;border-bottom: 1px solid #E9E9E9;}
+.personal-avatar p{text-align: center}
+.motto{position: absolute;top:120px;left:50%;width: 100%;transform: translateX(-50%);margin-bottom:5px;border-bottom: 1px solid #E9E9E9;}
 .motto h2{text-align: center;margin-bottom:5px;}
 
-.contact{position: absolute; bottom: 10px;width:100%;text-align: center;}
-.contact i{padding: 20px;color: #4B505E}
+.contact{position: absolute; bottom: 10px;left:50%;transform: translateX(-50%);}
+.contact i{text-align:center;padding:5px;color: #4B505E}
 
-.hot-content{ position: relative;min-height: 200px; margin: 15px;overflow: hidden;background: #fff;border-radius: 4px;}
+.hot-content{ position: relative;min-height: 200px;min-width:320px; margin-top: 15px;overflow: hidden;background: #fff;border-radius: 4px;}
 .hot-content .title{position: absolute; top:10px;width:100%;border-bottom: 1px solid #E9E9E9;}
 .hot-content .title a{color:#333;margin-left:15px;font-size: 14px}
 .hot-content-main{ position: absolute; top:40px;margin-left: 15px}
