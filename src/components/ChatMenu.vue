@@ -2,14 +2,14 @@
   <div class="chat-container" style="background-color: #141a48;margin: 0px;overflow: hidden;">
     <Row>
       <Col span="14" offset="5"  class='chat-content' style='background-color: #fff;overflow:hidden;'>
-       <Menu mode="horizontal" active-name="1">
+       <Menu mode="horizontal" active-name="1" >
             <div style="display:flex;justify-content: center;">
                 <MenuItem name="1"> <span style="padding:8px"><Icon type="chatbubble" size='30' ></Icon></span></MenuItem>
                 <MenuItem name="2"><span style="padding:8px"><Icon type="person" size='30'></Icon></span></MenuItem>
                 <MenuItem name="3"><span style="padding:8px"><Icon type="grid" size='30'></Icon></span></MenuItem>
             </div>
         </Menu>
-        <div style='height:100%'>
+        <div style='height: 420px;'>
           <router-view />
           </div>
       </Col>
@@ -38,8 +38,8 @@ export default {
 .chat-content {
   position: fixed;
   top: 50%;
-  min-width: 470px;
-  min-height: 470px;
+  width: 700px;
+  height: 470px;
   background-color: #fff;
   // padding: 35px 35px 15px 35px;
   transform: translateY(-50%);
