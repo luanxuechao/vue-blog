@@ -229,6 +229,12 @@
           </Tooltip>
         </div>
       </div>
+      <div class="left-login">
+        <div class="button">
+        <Button @click="goLogin()" type="primary">登录</Button>
+        <Button  type="info">注册</Button>
+        </div>
+      </div>
       <div class="hot-content">
         <div class="title">
           <a>热门文章</a>
@@ -340,6 +346,9 @@ export default {
     },
     goArticle(){
       this.$router.push({ path: '/ArticleDetail' });
+    },
+    goLogin(){
+      this.$router.push({ path: '/Login' });
     }
   },
   mounted() {

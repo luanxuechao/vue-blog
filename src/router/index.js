@@ -6,6 +6,7 @@ import TimeLine from '@/components/TimeLine'
 import DemoList from '@/components/DemoList'
 import Login from '@/components/Login'
 import index from '@/components/index'
+import ChatMenu from '@/components/ChatMenu'
 
 Vue.use(Router)
 
@@ -39,12 +40,15 @@ export default new Router({
         }
       ]
     },
-
     {
       path: '/Login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/ChatMenu',
+      name: 'ChatMenu',
+      component: ChatMenu
     }
-
   ]
 })

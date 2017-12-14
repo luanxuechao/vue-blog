@@ -7,21 +7,11 @@
         <Icon type="ios-email-outline" size='35'slot="prepend"></Icon>
         </Input>
       </Form-item>
-      <!-- <Form-item prop="password"> -->
     <Form-item>
-        <!-- <Input type="password" v-model="loginForm.password" placeholder="Password" @keyup.enter.native="handleLogin"> -->
         <Input class="code-input" type="text"  placeholder="请输入验证码" @keyup.enter.native="handleLogin">
         <Icon type="ios-locked-outline" size='35' style='width:27px;'slot="prepend"></Icon>
         <Button  type="text" slot="append"  @click="startCount">
           获取验证码
-          <!-- <vue-count-down
-          ref="countdown"
-          @countdownstart="countdownStart"
-          @countdownend="countdownEnd"
-          @countdownprogress="onCountdownProgress"
-          :auto-start="false"
-          :leading-zero="false"
-          >30</vue-count-down> -->
         </Button>
         </Input>
       </Form-item>
@@ -29,7 +19,6 @@
         <Button type="primary" @click="handleLogin('loginForm')" long>登录</Button>
       </Form-item>
     </Form>
-
   </div>
 </template>
 

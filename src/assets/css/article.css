@@ -41,3 +41,6 @@
 .hot-content-main{ position: absolute; top:40px;margin-left: 15px}
 .hot-content-main li{list-style-type: disc;list-style-position: inside;margin-bottom: 5px}
 .hot-content-main li a{padding: 10px 15px;font-size: 16px;font-weight:500;}
+
+.left-login{position: relative;padding:10px;min-width:320px;min-height: 50px; margin-top: 15px;overflow: hidden;background: #fff;border-radius: 4px;}
+.left-login .button{position: absolute;left:50%;transform: translateX(-50%);}

@@ -3,7 +3,7 @@
   <Row >
     <Col span="6" style="padding:20px;">
       <Card >
-          <div style="text-align:center">
+          <div style="text-align:center" v-on:click="goDemo('ChatMenu')">
             <Icon type="chatbubble" size='100' style="display:block"></Icon>
             <a>github地址</a>
             <h3>vueJS +socket.io + loopback 聊天室</h3>
@@ -50,7 +50,13 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+ methods:{
+    goDemo(routerName){
+        this.$router.push({ path: `/${routerName}` });
+    }
+  }
+};
 </script>
 
 

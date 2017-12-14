@@ -98,13 +98,7 @@ export default {
             case '3':
                this.$router.push({ path: '/DemoList' });
                 break;
-            case '4':
-               this.$router.push({ path: '/Login' });
-                break;
         }
-    //
-    // alert(name);
-    // alert(222);
     }
 }
 }
