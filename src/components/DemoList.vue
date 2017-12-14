@@ -53,7 +53,7 @@
 export default {
  methods:{
     goDemo(routerName){
-        this.$router.push({ path: `/${routerName}` });
+        this.$router.push({ path: `/ChatMenu/ChatList` });
     }
   }
 };

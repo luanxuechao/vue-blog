@@ -1,17 +1,17 @@
 <template>
   <div class="chat-container" style="background-color: #141a48;margin: 0px;overflow: hidden;">
-
     <Row>
-      <Col span="14" offset="5"  class='chat-content' style='background-color: #fff;'>
+      <Col span="14" offset="5"  class='chat-content' style='background-color: #fff;overflow:hidden;'>
        <Menu mode="horizontal" active-name="1">
-            <div class="layout-assistant" style='width: 300px; margin: 0 auto;height: inherit;'>
-                <MenuItem name="1"> <Icon type="chatbubble" size='35' style="display:block"></Icon></MenuItem>
-                <MenuItem name="2">Option 2</MenuItem>
-                <MenuItem name="3">Option 3</MenuItem>
-            </div>
-            <div>
+            <div style="display:flex;justify-content: center;">
+                <MenuItem name="1"> <span style="padding:8px"><Icon type="chatbubble" size='30' ></Icon></span></MenuItem>
+                <MenuItem name="2"><span style="padding:8px"><Icon type="person" size='30'></Icon></span></MenuItem>
+                <MenuItem name="3"><span style="padding:8px"><Icon type="grid" size='30'></Icon></span></MenuItem>
             </div>
         </Menu>
+        <div style='height:100%'>
+          <router-view />
+          </div>
       </Col>
     </Row>
   </div>

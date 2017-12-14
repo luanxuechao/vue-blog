@@ -7,6 +7,7 @@ import DemoList from '@/components/DemoList'
 import Login from '@/components/Login'
 import index from '@/components/index'
 import ChatMenu from '@/components/ChatMenu'
+import ChatList from '@/components/ChatList'
 
 Vue.use(Router)
 
@@ -48,7 +49,14 @@ export default new Router({
     {
       path: '/ChatMenu',
       name: 'ChatMenu',
-      component: ChatMenu
+      component: ChatMenu,
+      children:[
+        {
+          path: 'ChatList',
+          name: 'ChatList',
+          component: ChatList
+        }
+      ]
     }
   ]
 })
