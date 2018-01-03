@@ -1,7 +1,7 @@
 <template>
   <div style="height:100%" >
-    <Row style="height:100%" >
-      <Col span='7' style="height:100%; background:#ffffff;border-right:1px solid #eee;overflow:scroll;">
+    <Row style="height:100%;" >
+      <Col span='7' class="scroll" style="height:100%; background:#ffffff;border-right:1px solid #eee;overflow-y: scroll;">
         <div style='height:60px;border-bottom:1px solid #eee;position:relative;padding:10px;'>
           <div class="demo-avatar" style="position:absoulte;left:10px; display: flex;width:190px">
             <Avatar style="background-color: #87d068;" icon="person" size="large" />
@@ -116,14 +116,23 @@
         </div>
       </Col>
       <Col span='17' style="height:100%; background:#fffff">
-        
+        <chat-room></chat-room>
       </Col>
     </Row>
   </div>
 </template>
-<<script>
+<script>
+import chatRoom from './chat/chatRoom'
 export default {
-
+ components:{
+    chatRoom
+  }
 }
 </script>
+<<style>
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+</style>
+
 
