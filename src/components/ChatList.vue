@@ -129,7 +129,7 @@ export default {
   }
 }
 </script>
-<<style>
+<style>
 .scroll::-webkit-scrollbar {
     display: none;
 }

@@ -8,6 +8,7 @@ import Login from '@/components/Login'
 import index from '@/components/index'
 import ChatMenu from '@/components/ChatMenu'
 import ChatList from '@/components/ChatList'
+import FriendsMenu from '@/components/chat/friendsMenu'
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ export default new Router({
           path: 'ChatList',
           name: 'ChatList',
           component: ChatList
+        },
+        {
+          path: 'FriendsMenu',
+          name: 'FriendsMenu',
+          component: FriendsMenu
         }
       ]
     }

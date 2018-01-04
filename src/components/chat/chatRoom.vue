@@ -33,7 +33,7 @@
             asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
           </p>
         </div>
-          <div class="left-box">
+        <div class="left-box">
           <div class="avatar">
             <Avatar style="background-color: #87d068" icon="person" size="small" />
           </div>
@@ -49,7 +49,7 @@
             asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
           </p>
         </div>
-          <div class="right-box">
+        <div class="right-box">
           <div class="avatar">
             <Avatar style="background-color: #87d068" icon="person" size="small" />
           </div>
@@ -68,7 +68,11 @@
   </div>
 </template>
 <script>
-  export default {};
+  export default {
+    methods:{
+
+    }
+  };
 
 </script>
 <style>
@@ -110,7 +114,7 @@
   .right-box {
     position: relative;
     top: 10px;
-    left: 60px;
+    right: -120px;
     max-width: 300px;
     min-height: 40px;
     background: #eee;
@@ -127,7 +131,7 @@
   .right-box .avatar {
     position: absolute;
     top: 10px;
-    left: -50px;
+    right: -50px;
   }
 
   .right-box:after {
@@ -135,11 +139,11 @@
     content: "";
     width: 0;
     height: 0;
-    right: 100%;
+    left: 100%;
     top: 12px;
     border-top: 8px solid transparent;
-    border-right: 16px solid #eee;
+    border-left: 16px solid #eee;
     border-bottom: 8px solid transparent;
   }
-</style>
+
 </style>

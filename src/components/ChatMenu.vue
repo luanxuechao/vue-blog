@@ -2,7 +2,7 @@
   <div class="chat-container" style="background-color: #141a48;margin: 0px;overflow: hidden;">
     <Row>
       <Col span="14" offset="5"  class='chat-content' style='background-color: #fff;overflow:hidden;'>
-       <Menu mode="horizontal" active-name="1" >
+       <Menu mode="horizontal" active-name="1"  @on-select="changeMenu">
             <div style="display:flex;justify-content: center;">
                 <MenuItem name="1"> <span style="padding:8px"><Icon type="chatbubble" size='30' ></Icon></span></MenuItem>
                 <MenuItem name="2"><span style="padding:8px"><Icon type="person" size='30'></Icon></span></MenuItem>
@@ -21,6 +21,19 @@ export default {
   methods: {
     goDemo(routerName) {
       this.$router.push({ path: `/${routerName}` });
+    },
+    changeMenu(name){
+        switch(name){
+            case '1':
+               this.$router.push({ path: '/ChatMenu/ChatList' });
+                break;
+            case '2':
+               this.$router.push({ path: '/ChatMenu/FriendsMenu' });
+                break;
+            case '3':
+               this.$router.push({ path: '/DemoList' });
+                break;
+        }
     }
   }
 };
