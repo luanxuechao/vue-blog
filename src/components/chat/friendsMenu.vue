@@ -341,7 +341,7 @@
       <div style="width:90%;height:53px;border-bottom:1px solid #eee;text-align:center;">
         <p style="line-height: 53px;font-size:14px">详细信息</p>
         <div style="margin-top:20px;">
-          <Avatar shape="square" icon="person" src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large" />
+          <Avatar shape="square" icon="person" src="https://i.loli.net/2017/08/21/599a521472424.jpg" class='person-avastar' />
         </div>
         <h1 style="line-height: 53px;">
           AAA裕成景观
@@ -389,11 +389,8 @@
     outline: none;
   }
 
-  .ivu-avatar-large.ivu-avatar-icon {
+  .person-avastar {
     font-size: 100px;
-  }
-
-  .ivu-avatar-large {
     width: 100px;
     height: 100px;
     line-height: 100px;
