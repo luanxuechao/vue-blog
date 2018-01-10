@@ -351,15 +351,16 @@
         <p style="font-size:14px;color:#888888; line-height: 40px;">
           这是一段座右铭
         </p>
-        <p style="font-size:12px;color:#888888;line-height: 20px;">
+        <div>
+        <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
           <span>
             备注：
           </span>
           <span>
-            王八蛋
+            王八蛋adsda
           </span>
         </p>
-        <p style="font-size:12px;color:#888888;line-height: 20px;">
+        <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
           <span>
             地区：
           </span>
@@ -367,6 +368,7 @@
             上海闵行
           </span>
         </p>
+        </div>
          <Button style="width:150px;margin-top:20px;" type='primary'>发送消息</Button>
       </div>
       </Col>

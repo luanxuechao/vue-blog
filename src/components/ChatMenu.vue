@@ -3,10 +3,13 @@
     <Row>
       <Col span="14" offset="5"  class='chat-content' style='background-color: #fff;overflow:hidden;'>
        <Menu mode="horizontal" active-name="1"  @on-select="changeMenu">
-            <div style="display:flex;justify-content: center;">
+            <div style="width:100%;display:flex;justify-content: center;">
                 <MenuItem name="1"> <span style="padding:8px"><Icon type="chatbubble" size='30' ></Icon></span></MenuItem>
                 <MenuItem name="2"><span style="padding:8px"><Icon type="person" size='30'></Icon></span></MenuItem>
                 <MenuItem name="3"><span style="padding:8px"><Icon type="grid" size='30'></Icon></span></MenuItem>
+            </div>
+             <div style="margin-top: -55px;float: right; margin-right:20px;height:32px;">
+                   <Avatar shape="circle" icon="person" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
             </div>
         </Menu>
         <div style='height: 420px;'>
