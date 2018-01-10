@@ -9,6 +9,7 @@ import index from '@/components/index'
 import ChatMenu from '@/components/ChatMenu'
 import ChatList from '@/components/ChatList'
 import FriendsMenu from '@/components/chat/friendsMenu'
+import Register from '@/components/Register'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/Login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/Register',
+      name: 'Register',
+      component: Register
     },
     {
       path: '/ChatMenu',
