@@ -10,13 +10,16 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@xkeshi/vue-countdown": "^0.4.0",
+    "axios": "^0.17.1",
     "github-markdown-css": "^2.9.0",
     "iview": "^2.4.0",
+    "js-cookie": "^2.2.0",
     "mavon-editor": "^2.2.10",
     "vue": "^2.4.2",
     "vue-quill-editor": "^2.3.2",
     "vue-router": "^2.7.0",
-    "@xkeshi/vue-countdown": "^0.4.0"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -3,27 +3,32 @@
     <div id="canvascontainer" ref='can'></div>
     <Form ref="loginForm" autoComplete="on"  class="card-box login-form">
       <Form-item >
-        <Input type="text"  placeholder="请输入邮箱" autoComplete="off">
-        <Icon type="ios-email-outline" size='35'slot="prepend"></Icon>
+        <Input type="text"  placeholder="请输入手机号" autoComplete="off">
+        <Icon type="android-phone-portrait" size='35' slot="prepend"></Icon>
         </Input>
       </Form-item>
     <Form-item>
-        <Input class="code-input" type="text"  placeholder="请输入验证码" @keyup.enter.native="handleLogin">
-        <Icon type="ios-locked-outline" size='35' style='width:27px;'slot="prepend"></Icon>
-        <Button  type="text" slot="append"  @click="startCount">
-          获取验证码
-        </Button>
+        <Input  type="password"  placeholder="请输入密码" @keyup.enter.native="handleLogin">
+        <Icon type="ios-locked-outline" size='35'  slot="prepend"></Icon>
         </Input>
       </Form-item>
-      <Form-item>
-        <Button type="primary" @click="handleLogin('loginForm')" long>登录</Button>
+      <Form-item style="text-align:center">
+        <Button type="primary" @click="goPage('loginForm')" style="margin-right:30px" >登录</Button>
+        <Button type="ghost" @click="goPage('Register')" style="margin-right:50px" >注册</Button>
+        <!-- <Button type="text" @click="goPage('R')" style="margin-right:-60px;margin-top:-40px;">忘记密码?</Button> -->
       </Form-item>
     </Form>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+ methods: {
+    goPage(name){
+        this.$router.push({ path: `/${name}` });
+    }
+}
+};
 </script>
 
 <style>

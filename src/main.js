@@ -8,7 +8,7 @@ import router from './router'
 import iview from 'iview'
 import VueQuillEditor from 'vue-quill-editor'
 import mavonEditor from 'mavon-editor'
-
+import store from './store'
 
 
 // css
@@ -29,6 +29,7 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<App/>',
   components: {App }

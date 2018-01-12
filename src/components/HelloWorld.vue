@@ -232,7 +232,7 @@
       <div class="left-login">
         <div class="button">
         <Button @click="goLogin()" type="primary">登录</Button>
-        <Button  type="info">注册</Button>
+        <Button @click="goRegister()" type="info">注册</Button>
         </div>
       </div>
       <div class="hot-content">
@@ -349,6 +349,9 @@ export default {
     },
     goLogin(){
       this.$router.push({ path: '/Login' });
+    },
+     goRegister(){
+      this.$router.push({ path: '/Register' });
     }
   },
   mounted() {

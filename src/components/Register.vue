@@ -2,12 +2,12 @@
   <div class="login-container" style="background-color: #141a48;margin: 0px;overflow: hidden;">
     <div id="canvascontainer" ref='can'></div>
     <Form ref="registerForm" :model="registerForm" :rules="registerRules" class="card-box login-form">
-      <Form-item label="账户" prop="username">
-        <Input type="text" v-model="registerForm.username" placeholder="请输入手机号" autoComplete="off">
+      <Form-item label="账户" prop="mobile">
+        <Input type="text" v-model="registerForm.mobile" placeholder="请输入手机号" autoComplete="off">
         </Input>
       </Form-item>
       <Form-item label="密码" prop="password">
-        <Input type="text" v-model="registerForm.password" placeholder="请输入5-8位密码" autoComplete="off">
+        <Input type="password" v-model="registerForm.password" placeholder="请输入5-8位密码" autoComplete="off">
         </Input>
       </Form-item>
       <Form-item label="昵称" prop="nickName">
@@ -27,7 +27,7 @@
         </RadioGroup>
       </Form-item>
       <Form-item>
-        <Button type="primary" @click="register('registerForm')" long>注册</Button>
+        <Button type="primary" @click="handleRegister('registerForm')" long>注册</Button>
       </Form-item>
     </Form>
   </div>
@@ -37,6 +37,9 @@
   import {
     isMobile
   } from "../utils/validate"
+  import {
+    register
+  } from '@/resources/user'
   export default {
     data() {
       const validateMobile = (rule, value, callback) => {
@@ -47,29 +50,29 @@
         }
       };
       const validatepassword = (rule, value, callback) => {
-        if (!value.length <8 || ! value.length >5) {
-          callback(new Error("请输入正确的密码"));
-        } else {
+        if (value.length <= 8 && value.length >= 5) {
           callback();
+        } else {
+          callback(new Error("请输入正确的密码"));
         }
       };
-        const validatenickName = (rule, value, callback) => {
-        if (!value.length >2 || ! value.length <8) {
-          callback(new Error("请输入正确的昵称"));
-        } else {
+      const validatenickName = (rule, value, callback) => {
+        if (value.length >= 2 && value.length <= 8) {
           callback();
+        } else {
+          callback(new Error("请输入正确的昵称"));
         }
       };
       return {
         registerForm: {
           // mobile: Cookies.get('loginMobile'),
-          username: '',
+          mobile: '',
           password: '',
           nickName: '',
           sex: 'MALE'
         },
         registerRules: {
-          username: [{
+          mobile: [{
             required: true,
             trigger: "blur",
             validator: validateMobile
@@ -88,9 +91,19 @@
       }
     },
     methods: {
-      register() {
+      handleRegister() {
         this.$refs.registerForm.validate(valid => {
-          if (valid) {};
+          if (!valid) {
+            return false;
+          };
+          register(this.registerForm)
+            .then(res => {
+              this.$Message.success("注册成功")
+               this.$router.push({ path: "/Login" });
+            })
+            .catch((err) => {
+              this.$Message.error('注册出了点问题', err);
+            });
         })
       }
     }
