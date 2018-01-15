@@ -2,10 +2,10 @@ import httpServer from '../common/httpInterceptor'
 import Qs from 'qs'
 
 // 用户登录
-export function loginByUsername(username, password) {
+export function loginByMobile(mobile, password) {
   const data = {
-    username,
-    password
+    mobile:mobile,
+    password:password
   };
   return httpServer({
     url: 'BlogUsers/login',

@@ -1,5 +1,5 @@
 import {
-  loginByUsername
+  loginByMobile
 } from '../../resources/user'
 import Cookies from 'js-cookie'
 import { URL } from '../../common/config'
@@ -51,27 +51,28 @@ const user = {
   },
   actions: {
     // 用户名登录
-    LoginByUsername({
+    LoginByMobile({
       commit
     }, userInfo) {
-      const username = userInfo.username.trim()
+      const mobile = userInfo.mobile.trim();
       return new Promise((resolve, reject) => {
-        loginByUsername(username, userInfo.password).then(response => {
+        loginByMobile(mobile, userInfo.password).then(response => {
           const data = response.data
+          console.log('data==>',data);
           // console.log('LoginByUsername:', response.data)
-          Cookies.set('Admin-Token', data.token)
-          Cookies.set('UserType', data.role.name)
-          Cookies.set('Uid', data.organizationId)
-          Cookies.set('UserId', data.id)
-          Cookies.set('Avatar', data.avatar ? URL + data.avatar.url : defaultAvatar)
-          commit('SET_TOKEN', data.token)
-          commit('SET_USERNAME', data.username)
-          commit('SET_USER_TYPE', data.role.name)
-          commit('SET_UID', data.organizationId)
-          commit('SET_USERID', data.id)
-          commit('SET_MOBILE', mobile)
-          commit('SET_CODE', code)
-          commit('SET_AVATAR', data.avatar ? URL + data.avatar.url : defaultAvatar)
+          // Cookies.set('Admin-Token', data.token)
+          // Cookies.set('UserType', data.role.name)
+          // Cookies.set('Uid', data.organizationId)
+          // Cookies.set('UserId', data.id)
+          // Cookies.set('Avatar', data.avatar ? URL + data.avatar.url : defaultAvatar)
+          // commit('SET_TOKEN', data.token)
+          // commit('SET_USERNAME', data.username)
+          // commit('SET_USER_TYPE', data.role.name)
+          // commit('SET_UID', data.organizationId)
+          // commit('SET_USERID', data.id)
+          // commit('SET_MOBILE', mobile)
+          // commit('SET_CODE', code)
+          // commit('SET_AVATAR', data.avatar ? URL + data.avatar.url : defaultAvatar)
           resolve()
         }).catch(error => {
           reject(error)
