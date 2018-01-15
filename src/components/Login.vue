@@ -1,7 +1,7 @@
 <template>
   <div class="login-container" style="background-color: #141a48;margin: 0px;overflow: hidden;">
     <div id="canvascontainer" ref='can'></div>
-    <Form ref="loginForm" autoComplete="on" class="card-box login-form">
+    <Form ref="loginForm" autoComplete="on" :model="loginForm" :rules="loginRules" class="card-box login-form">
       <Form-item prop="mobile">
         <Input type="text" v-model="loginForm.mobile" placeholder="请输入手机号" autoComplete="off">
         <Icon type="android-phone-portrait" size='35' slot="prepend"></Icon>
@@ -25,6 +25,7 @@
   import {
     isMobile
   } from "../utils/validate"
+ import Cookies from 'js-cookie'
   export default {
     data() {
       const validateMobile = (rule, value, callback) => {
@@ -43,7 +44,7 @@
       };
       return {
         loginForm: {
-          mobile: '',
+          mobile:Cookies.get('mobile') ,
           password: '',
         },
         loginRules: {

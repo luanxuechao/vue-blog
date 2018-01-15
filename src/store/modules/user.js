@@ -65,7 +65,6 @@ const user = {
           Cookies.remove('token')
           Cookies.remove('nickName')
           Cookies.remove('userId')
-          Cookies.remove('mobile')
           resolve()
         }).catch(error => {
           reject(error)

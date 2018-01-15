@@ -26,6 +26,9 @@
           </Radio>
         </RadioGroup>
       </Form-item>
+       <Form-item>
+         <Button type="text"  @click="goLogin('')" long>已有账号去登录</Button>
+      </Form-item>
       <Form-item>
         <Button type="primary" @click="handleRegister('registerForm')" long>注册</Button>
       </Form-item>
@@ -105,6 +108,9 @@
               this.$Message.error('注册出了点问题', err);
             });
         })
+      },
+      goLogin(){
+          this.$router.push({ path: "/Login" });
       }
     }
   };
