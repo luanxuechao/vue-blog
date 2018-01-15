@@ -1,26 +1,19 @@
 import {
-  loginByMobile
+  loginByMobile,
+  logout
 } from '../../resources/user'
 import Cookies from 'js-cookie'
 import { URL } from '../../common/config'
 
 const user = {
   state: {
-    mobile: Cookies.get('LoginMobile'),
-    username: Cookies.get('UserName'),
-    code: '',
-    userId: Cookies.get('UserId'),
-    token: Cookies.get('Admin-Token'),
-    user_type: Cookies.get('UserType'),
-    name: '',
-    avatar: Cookies.get('Avatar'),
-    roles: []
+    mobile: Cookies.get('mobile'),
+    nickName: Cookies.get('nickName'),
+    userId: Cookies.get('userId'),
+    token: Cookies.get('token'),
   },
 
   mutations: {
-    SET_USER_TYPE: (state, user_type) => {
-      state.user_type = user_type
-    },
     SET_TOKEN: (state, token) => {
       state.token = token;
     },
@@ -30,23 +23,8 @@ const user = {
     SET_MOBILE: (state, mobile) => {
       state.mobile = mobile
     },
-    SET_USERNAME: (state, username) => {
-      state.username = username
-    },
-    SET_STATUS: (state, status) => {
-      state.status = status;
-    },
     SET_NAME: (state, name) => {
-      state.name = name;
-    },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar;
-    },
-    LOGIN_SUCCESS: () => {
-      // console.log('login success')
-    },
-    LOGOUT_USER: state => {
-      state.user = '';
+      state.nickName = name;
     }
   },
   actions: {
@@ -58,21 +36,36 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByMobile(mobile, userInfo.password).then(response => {
           const data = response.data
-          console.log('data==>',data);
-          // console.log('LoginByUsername:', response.data)
-          // Cookies.set('Admin-Token', data.token)
-          // Cookies.set('UserType', data.role.name)
-          // Cookies.set('Uid', data.organizationId)
-          // Cookies.set('UserId', data.id)
-          // Cookies.set('Avatar', data.avatar ? URL + data.avatar.url : defaultAvatar)
-          // commit('SET_TOKEN', data.token)
-          // commit('SET_USERNAME', data.username)
-          // commit('SET_USER_TYPE', data.role.name)
-          // commit('SET_UID', data.organizationId)
-          // commit('SET_USERID', data.id)
-          // commit('SET_MOBILE', mobile)
-          // commit('SET_CODE', code)
+          Cookies.set('token', data.token)
+          Cookies.set('userId', data.id)
+          Cookies.set('nickName', data.nickName)
+          Cookies.set('mobile', data.mobile)
+          commit('SET_TOKEN', data.token)
+          commit('SET_NAME', data.username)
+          commit('SET_USERID', data.id)
+          commit('SET_MOBILE', mobile)
           // commit('SET_AVATAR', data.avatar ? URL + data.avatar.url : defaultAvatar)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+     // 登出
+    LogOut({
+      commit,
+      state
+    }) {
+      return new Promise((resolve, reject) => {
+        logout(state.token).then(() => {
+          commit('SET_TOKEN', '')
+          commit('SET_NAME', '')
+          commit('SET_USERID', '')
+          commit('SET_MOBILE', '')
+          Cookies.remove('token')
+          Cookies.remove('nickName')
+          Cookies.remove('userId')
+          Cookies.remove('mobile')
           resolve()
         }).catch(error => {
           reject(error)

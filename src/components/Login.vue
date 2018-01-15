@@ -69,11 +69,7 @@
           this.$store
             .dispatch("LoginByMobile", this.loginForm)
             .then(res => {
-              // this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-              // const mobile = res.data.mobile
-              // Cookies.set('loginMobile', this.loginForm.mobile)
               this.$Message.success("登录成功")
-
               this.loading = false;
               this.$router.push({ path: "/" });
             })

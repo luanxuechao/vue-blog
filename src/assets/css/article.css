@@ -44,3 +44,7 @@
 
 .left-login{position: relative;padding:10px;min-width:320px;min-height: 50px; margin-top: 15px;overflow: hidden;background: #fff;border-radius: 4px;}
 .left-login .button{position: absolute;left:50%;transform: translateX(-50%);}
+
+.left-personal{
+  position: relative;min-width:320px;min-height: 50px; margin-top: 15px;overflow: hidden;background: #fff;border-radius: 4px;
+}

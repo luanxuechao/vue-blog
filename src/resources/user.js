@@ -28,3 +28,10 @@ export function register(userForm) {
     data: Qs.stringify(userData)
   });
 }
+
+export function logout(){
+  return httpServer({
+    url: 'BlogUsers/logout',
+    method: 'post'
+  });
+}

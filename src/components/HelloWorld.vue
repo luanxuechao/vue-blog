@@ -229,11 +229,22 @@
           </Tooltip>
         </div>
       </div>
-      <div class="left-login">
+      <div  v-if='!user.nickName' class="left-login">
         <div class="button">
         <Button @click="goLogin()" type="primary">登录</Button>
         <Button @click="goRegister()" type="info">注册</Button>
         </div>
+      </div>
+       <div class="left-personal" v-if='user.nickName'>
+       <div style="height:36px;background:#eee;width:100%;line-height:36px;width:100%；">
+          <span style='font-size:18px;' >个人信息</span>
+       </div>
+       <div class="demo-avatar" style='height:50px;margin:10px;'>
+            <Avatar shape="square" icon="person" size="large" src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334584121,1324775889&fm=27&gp=0.jpg' style='vertical-align: middle;'/>
+            <span style="font-size:18px;padding-left:10px;line-height:50px;vertical-align: middle;">{{user.nickName}}</span>
+        </div>
+        <h3>"{{user.motto}}"</h3>
+        <Button @click="logout()" type="default" style='float:right;margin:0 10px 10px 0px'>退出</Button>
       </div>
       <div class="hot-content">
         <div class="title">
@@ -263,11 +274,15 @@
 </template>
 import  "../assets/css/article.css"
 <script>
-
+import Cookies from 'js-cookie'
 export default {
   name: 'HelloWorld',
   data() {
     return {
+      user:{
+          nickName:Cookies.get('nickName'),
+          motto:'只想做你的骑士',
+      },
       movieList: [
         {
           name: '肖申克的救赎',
@@ -352,6 +367,14 @@ export default {
     },
      goRegister(){
       this.$router.push({ path: '/Register' });
+    },
+    logout(){
+      this.$store.dispatch('LogOut').then((res) =>{
+        this.$Message.success("注销成功");
+        this.user.nickName= Cookies.get('nickName');
+      }).catch((err) =>{
+          this.$Message.error('注销出了点问题！', err);
+      });
     }
   },
   mounted() {
