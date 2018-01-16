@@ -240,8 +240,8 @@
           <span style='font-size:18px;' >个人信息</span>
        </div>
        <div class="demo-avatar" style='height:50px;margin:10px;'>
-            <Avatar shape="square" icon="person" size="large" src='https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334584121,1324775889&fm=27&gp=0.jpg' style='vertical-align: middle;'/>
-            <span style="font-size:18px;padding-left:10px;line-height:50px;vertical-align: middle;">{{user.nickName}}</span>
+            <avatar v-bind:username="user.picName" :rounded="false" color="#fff"  ></avatar>
+            <span style="font-size:18px;float:left;margin:-40px 0px 0px 60px">{{user.nickName}}</span>
         </div>
         <h3>"{{user.motto}}"</h3>
         <Button @click="logout()" type="default" style='float:right;margin:0 10px 10px 0px'>退出</Button>
@@ -275,12 +275,20 @@
 import  "../assets/css/article.css"
 <script>
 import Cookies from 'js-cookie'
+import Avatar from 'vue-avatar'
+import {
+    getPinYinFirstHearder
+  } from "../utils/validate"
 export default {
   name: 'HelloWorld',
+  components: {
+    Avatar
+  },
   data() {
     return {
       user:{
           nickName:Cookies.get('nickName'),
+          picName:getPinYinFirstHearder(Cookies.get('nickName')),
           motto:'只想做你的骑士',
       },
       movieList: [

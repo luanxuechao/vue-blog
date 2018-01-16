@@ -1,4 +1,4 @@
-
+import PinYin from 'pinyin';
 // 是否合法的邮箱
 export function isEmail(str) {
   const reg = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/i
@@ -44,4 +44,18 @@ export function oneOf(value, validList) {
     }
   }
   return false;
+}
+
+export function getPinYinFirstHearder(word){
+  if(!word){
+      return ''
+  }
+  word = PinYin(word,{style:4});
+  console.log('PinYin',word)
+  if(word.length > 1 ){
+    word= word[word.length-2].toString()+' '+word[word.length-1].toString();
+  }else{
+    word =word[0].toString();
+  }
+  return word;
 }
