@@ -240,10 +240,11 @@
           <span style='font-size:18px;' >个人信息</span>
        </div>
        <div class="demo-avatar" style='height:50px;margin:10px;'>
-            <avatar v-bind:username="user.picName" :rounded="false" color="#fff"  ></avatar>
-            <span style="font-size:18px;float:left;margin:-40px 0px 0px 60px">{{user.nickName}}</span>
+         <Identicon shape="square" icon="person" size="large" v-bind:_text="user.nickName" style='vertical-align: middle;'/>
+            <!-- <Avatar shape="square" icon="person" size="large" v-bind:src="user.picName" style='vertical-align: middle;'/> -->
+            <span style="font-size:18px;padding-left:10px;line-height:50px;vertical-align: middle;">{{user.nickName}}</span>
         </div>
-        <h3>"{{user.motto}}"</h3>
+        <h3 style='margin-left:10px;'>"{{user.motto}}"</h3>
         <Button @click="logout()" type="default" style='float:right;margin:0 10px 10px 0px'>退出</Button>
       </div>
       <div class="hot-content">
@@ -275,20 +276,18 @@
 import  "../assets/css/article.css"
 <script>
 import Cookies from 'js-cookie'
-import Avatar from 'vue-avatar'
-import {
-    getPinYinFirstHearder
-  } from "../utils/validate"
+import {identicon} from 'sosnail'
+import Identicon from './avatar/Identicon'
 export default {
   name: 'HelloWorld',
-  components: {
-    Avatar
+  components:{
+    Identicon
   },
   data() {
+    //  console.log(identicon({'text': 'luanxuechao'}));
     return {
       user:{
           nickName:Cookies.get('nickName'),
-          picName:getPinYinFirstHearder(Cookies.get('nickName')),
           motto:'只想做你的骑士',
       },
       movieList: [
