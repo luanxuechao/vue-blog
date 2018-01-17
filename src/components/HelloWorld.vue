@@ -379,6 +379,7 @@ export default {
       this.$store.dispatch('LogOut').then((res) =>{
         this.$Message.success("注销成功");
         this.user.nickName= Cookies.get('nickName');
+        this.$socket.disconnect();
       }).catch((err) =>{
           this.$Message.error('注销出了点问题！', err);
       });

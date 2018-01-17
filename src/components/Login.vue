@@ -70,7 +70,8 @@
           this.$store
             .dispatch("LoginByMobile", this.loginForm)
             .then(res => {
-              this.$Message.success("登录成功")
+              this.$Message.success("登录成功");
+              this.$store.dispatch("SocketConnect")
               this.loading = false;
               this.$router.push({ path: "/" });
             })
