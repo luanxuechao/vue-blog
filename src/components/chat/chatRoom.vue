@@ -62,7 +62,7 @@
     </Row>
     <Row>
       <Col span='24' style="height:100%">
-      <Input v-model="value6" type="textarea" :autosize="{minRows: 5,maxRows: 5}"></Input>
+      <Input  type="textarea" :autosize="{minRows: 5,maxRows: 5}"></Input>
       </Col>
     </Row>
   </div>

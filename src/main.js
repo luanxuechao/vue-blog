@@ -24,6 +24,7 @@ Vue.use(iview);
 Vue.use(mavonEditor)
 Vue.use(VueQuillEditor)
 
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

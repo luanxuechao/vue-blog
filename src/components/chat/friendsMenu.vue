@@ -3,7 +3,7 @@
     <Row style="height:100%;" class="scroll">
       <Col span='6' style="height:100%; background:#ffffff;border-right:1px solid #eee;overflow-y: auto;">
       <div style="width:100%; border-bottom:1px solid #eee">
-        <Button style="width:150px; margin:10px auto;display:block;">添加好友</Button>
+        <Button style="width:150px; margin:10px auto;display:block;" @click="modal6 = true">添加好友</Button>
       </div>
       <div>
         <Collapse accordion style="background:#fff !important;border:none;">
@@ -373,10 +373,33 @@
       </div>
       </Col>
     </Row>
+    <Modal
+        v-model="modal6"
+        title="添加好友"
+        :loading="loading"
+        @on-ok="asyncOK">
+        <Input type="text" v-model='friendMobile' placeholder="请输入手机号">
+        </Input>
+    </Modal>
   </div>
 </template>
 <script>
-  export default {};
+  export default {
+     data () {
+            return {
+                modal6: false,
+                loading: true,
+                friendMobile:''
+            }
+        },
+      methods: {
+            asyncOK () {
+              this.$socket.emit('addFriend',{mobile:this.friendMobile},(err,result)=>{
+                 this.modal6 = false;
+              })
+            }
+        }
+  };
 
 </script>
 <style>
