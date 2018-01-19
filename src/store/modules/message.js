@@ -19,7 +19,7 @@ const messages = {
       state.connect = true
     },
     SOCKET_NEWFRIEND: (state, message) => {
-      console.log(message);
+      console.log('SOCKET_NEWFRIEND',message);
       message.title =message[0].data;
       message.content =message[0].data
       notification(message)

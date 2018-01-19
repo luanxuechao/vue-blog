@@ -5,336 +5,87 @@
       <div style="width:100%; border-bottom:1px solid #eee">
         <Button style="width:150px; margin:10px auto;display:block;" @click="modal6 = true">添加好友</Button>
       </div>
+      <!-- 添加朋友-->
       <div>
-        <Collapse accordion style="background:#fff !important;border:none;">
-          <Panel name="1" style="border-top:none !important;">
-            我的好友
-            <div slot="content">
-              <div class='person' tabindex="1" style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" icon="person" />
-                  <div style="margin-left:10px">
-                    <h3>
-                      Chevalier
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class='person' tabindex="2" style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:auto 0;" src='http://www.qqzhi.com/uploadpic/2015-01-22/022222987.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      Chevalier
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class='person' tabindex="3" style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:auto 0;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      哇哈哈
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      飞旺
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src="https://i.loli.net/2017/08/21/599a521472424.jpg"
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      卫龙
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      小当前
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src="https://i.loli.net/2017/08/21/599a521472424.jpg"
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      虹桥
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
+        <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+          <div class="demo-avatar" style="margin-left:10px;">
+            <Avatar style="background-color: #EEA150;margin-top:4px;" icon="person-add" shape="square" />
+          </div>
+          <span style="display:block;margin-top: -50px;margin-left: 50px;">新的朋友
+          </span>
+        </div>
+      </div>
+       <!-- 朋友列表-->
+      <div>
+        <div>
+          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #877d68;margin-top:4px;" icon="pin" shape="square" />
             </div>
-          </Panel>
-          <Panel name="2" style="border:none !important;">
-            我的家人
-            <div slot="content">
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" icon="person" />
-                  <div style="margin-left:10px">
-                    <h3>
-                      Chevalier
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:auto 0;" src='http://www.qqzhi.com/uploadpic/2015-01-22/022222987.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      Chevalier
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      哇哈哈
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      飞旺
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src="https://i.loli.net/2017/08/21/599a521472424.jpg"
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      卫龙
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      小当前
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src="https://i.loli.net/2017/08/21/599a521472424.jpg"
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      虹桥
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
+            </span>
+          </div>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #87d068;margin-top:4px;" icon="location" shape="square" />
             </div>
-          </Panel>
-          <Panel name="3" style="border-top:none !important;">
-            我的同学
-            <div slot="content">
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" icon="person" />
-                  <div style="margin-left:10px">
-                    <h3>
-                      Chevalier
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:auto 0;" src='http://www.qqzhi.com/uploadpic/2015-01-22/022222987.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      Chevalier
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      哇哈哈
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      飞旺
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src="https://i.loli.net/2017/08/21/599a521472424.jpg"
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      卫龙
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src='http://qq1234.org/uploads/allimg/140818/3_140818171934_4.jpg'
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      小当前
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div style='height:45px;position:relative;margin-left:-16px;width:170px;'>
-                <div class="demo-avatar" style="position:absoulte;display:flex;margin-left:10px;">
-                  <Avatar style="background-color: #87d068; width:40px;margin:0 auto;" src="https://i.loli.net/2017/08/21/599a521472424.jpg"
-                  />
-                  <div style="margin-left:10px">
-                    <h3>
-                      虹桥
-                    </h3>
-                    <span style='overflow:hidden; text-overflow:ellipsis;
-                          display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-                      这是测试的一段话哈哈哈哈
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
+            </span>
+          </div>
+        </div>
+        <div>
+          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #87d07d;margin-top:4px;" icon="locked" shape="square" />
             </div>
-          </Panel>
-        </Collapse>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
+            </span>
+          </div>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #9f4f68;margin-top:4px;" icon="spoon" shape="square" />
+            </div>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
+            </span>
+          </div>
+        </div>
+        <div>
+          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #87d09f;margin-top:4px;" icon="pound" shape="square" />
+            </div>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
+            </span>
+          </div>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #875168;margin-top:4px;" icon="toggle" shape="square" />
+            </div>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
+            </span>
+          </div>
+        </div>
+         <div>
+          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #87d068;margin-top:4px;" icon="person" shape="square" />
+            </div>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
+            </span>
+          </div>
+          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+            <div class="demo-avatar" style="margin-left:10px;">
+              <Avatar style="background-color: #87d068;margin-top:4px;" icon="person" shape="square" />
+            </div>
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
+            </span>
+          </div>
+        </div>
+
       </div>
       </Col>
       <Col span='18' style="height:100%; background:#fff;display:flex;justify-content:center;">
@@ -352,53 +103,51 @@
           这是一段座右铭
         </p>
         <div>
-        <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
-          <span>
-            备注：
-          </span>
-          <span>
-            王八蛋adsda
-          </span>
-        </p>
-        <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
-          <span>
-            地区：
-          </span>
-          <span>
-            上海闵行
-          </span>
-        </p>
+          <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
+            <span>
+              备注：
+            </span>
+            <span>
+              王八蛋adsda
+            </span>
+          </p>
+          <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
+            <span>
+              地区：
+            </span>
+            <span>
+              上海闵行
+            </span>
+          </p>
         </div>
-         <Button style="width:150px;margin-top:20px;" type='primary'>发送消息</Button>
+        <Button style="width:150px;margin-top:20px;" type='primary'>发送消息</Button>
       </div>
       </Col>
     </Row>
-    <Modal
-        v-model="modal6"
-        title="添加好友"
-        :loading="loading"
-        @on-ok="asyncOK">
-        <Input type="text" v-model='friendMobile' placeholder="请输入手机号">
-        </Input>
+    <Modal v-model="modal6" title="添加好友" :loading="loading" @on-ok="asyncOK">
+      <Input type="text" v-model='friendMobile' placeholder="请输入好友手机号">
+      </Input>
     </Modal>
   </div>
 </template>
 <script>
   export default {
-     data () {
-            return {
-                modal6: false,
-                loading: true,
-                friendMobile:''
-            }
-        },
-      methods: {
-            asyncOK () {
-              this.$socket.emit('addFriend',{mobile:this.friendMobile},(err,result)=>{
-                 this.modal6 = false;
-              })
-            }
-        }
+    data() {
+      return {
+        modal6: false,
+        loading: true,
+        friendMobile: ''
+      }
+    },
+    methods: {
+      asyncOK() {
+        this.$socket.emit('addFriend', {
+          mobile: this.friendMobile
+        }, (err, result) => {
+          this.modal6 = false;
+        })
+      }
+    }
   };
 
 </script>
@@ -410,7 +159,7 @@
   .person:focus,
   .person:hover,
   .person:active {
-    background: #eee;
+    background: #ddd;
     outline: none;
   }
 
