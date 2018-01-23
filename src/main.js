@@ -9,6 +9,7 @@ import iview from 'iview'
 import VueQuillEditor from 'vue-quill-editor'
 import mavonEditor from 'mavon-editor'
 import store from './store'
+import filter from './filters'
 
 
 // css
@@ -23,6 +24,7 @@ import './assets/css/articleDetail.css'
 Vue.use(iview);
 Vue.use(mavonEditor)
 Vue.use(VueQuillEditor)
+Vue.use(filter)
 
 
 Vue.config.productionTip = false
