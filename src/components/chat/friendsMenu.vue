@@ -108,7 +108,7 @@
             <span style="color:#aaa;">{{friendmessage.createdAt | timefilter('MM-DD HH:mm')}}</span>
             <div style="width:470px; height:100px;margin:0 auto;border:1px solid #eee;border-radius:5px">
               <div class="demo-avatar" style="float:left;margin:30px 0px 30px 20px;">
-                <Identicon  shape="circle" icon="person" size="large" :_text="friendmessage.creatorId == userId?friendmessage.receiver.nickName:friendmessage.creator.nickName" />
+                <Identicon  shape="square" icon="person" size="large" :_text="friendmessage.creatorId == userId?friendmessage.receiver.nickName:friendmessage.creator.nickName" />
               </div>
               <div v-if='friendmessage.creatorId == userId'style="float:left;margin:30px 0px 30px 0px;">
                 <Button type="text" style="color:#278DE9">{{friendmessage.receiver.nickName}}</Button>
@@ -126,45 +126,13 @@
                 <span v-if='friendmessage.result == "FAILED"' style="color:#C5C5C5">已拒绝</span>
               </div>
                <div  v-if='friendmessage.receiverId == userId' style="float:right;margin:30px 20px 30px 0px;">
-                <Button v-if='friendmessage.result == "AUTHENTICATION"' type="success">同意</Button>
-                <Button v-if='friendmessage.result == "AUTHENTICATION"' type="error">拒绝</Button>
+                <Button v-if='friendmessage.result == "AUTHENTICATION"' type="success" @click='resolve(friendmessage.id,"SUCCESS")'>同意</Button>
+                <Button v-if='friendmessage.result == "AUTHENTICATION"' type="error" @click='resolve(friendmessage.id,"FAILED")'>拒绝</Button>
                 <span  v-if='friendmessage.result == "SUCCESS"' style="color:#C5C5C5">已添加</span>
                 <span v-if='friendmessage.result == "FAILED"' style="color:#C5C5C5">已拒绝</span>
               </div>
             </div>
           </div>
-           <!-- 新的朋友界面
-          <div style="text-align: center;margin-top:20px;">
-            <span style="color:#aaa">01-11 10:20</span>
-            <div style="width:470px; height:100px;margin:0 auto;border:1px solid #eee;border-radius:5px">
-              <div class="demo-avatar" style="float:left;margin:30px 0px 30px 20px;">
-                <Avatar style="background-color: #9f4f68;" icon="spoon" shape="circle" size='large' />
-              </div>
-              <div style="float:left;margin:30px 0px 30px 0px;">
-                <Button type="text" style="color:#278DE9">哇哈哈</Button>
-                <span>已添加你为好友</span>
-              </div>
-              <div style="float:right;margin:30px 20px 30px 0px;">
-                <Button type="success">同意</Button>
-                <Button type="error">拒绝</Button>
-              </div>
-            </div>
-          </div>
-          <div style="text-align: center;margin-top:20px;">
-            <span style="color:#aaa">01-11 10:20</span>
-            <div style="width:470px; height:100px;margin:0 auto;border:1px solid #eee;border-radius:5px">
-              <div class="demo-avatar" style="float:left;margin:30px 0px 30px 20px;">
-                <Avatar style="background-color: #9f4f68;" icon="spoon" shape="circle" size='large' />
-              </div>
-              <div style="float:left;margin:30px 0px 30px 0px;">
-                <Button type="text" style="color:#278DE9">哇哈哈</Button>
-                <span>已添加你为好友</span>
-              </div>
-              <div style="float:right;margin:30px 20px 30px 0px;">
-                <span style="color:#C5C5C5">等待验证</span>
-              </div>
-            </div>
-          </div>-->
         </div>
       </div>
       <!-- 详细信息-->
@@ -243,7 +211,20 @@ import Identicon from '../avatar/Identicon'
             this.friendmessages=result.datas;
             console.log('friendmessage',result);
           });
+        }else{
+            this.friendMenuType = type;
         }
+      },
+      resolve(messageId,prompt){
+        this.$socket.emit('resolveFriendMessage',{messageId:messageId,prompt:prompt},(err, result) => {
+            if(err){
+              this.$Notice.error({
+              title: '请求出错',
+              desc: err.msg
+              });
+            };
+            this.changMenu('NEWFRIEND');
+        });
       }
     }
   };

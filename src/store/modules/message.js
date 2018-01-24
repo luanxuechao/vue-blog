@@ -20,8 +20,8 @@ const messages = {
     },
     SOCKET_NEWFRIEND: (state, message) => {
       console.log('SOCKET_NEWFRIEND',message);
-      message.title =message[0].data;
-      message.content =message[0].data
+      message.title ='新的好友';
+      message.content =message[0].creator.nickName+'请求添加你为好友'
       notification(message)
     }
   },
