@@ -9,7 +9,7 @@
       <div v-on:click='changMenu("NEWFRIEND")'>
         <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
           <div class="demo-avatar-badge" style="margin-left:10px;">
-            <Badge v-bind:dot="loading">
+            <Badge :dot='!!friendmessageCount' >
               <Avatar style="background-color: #EEA150;" icon="person-add" shape="square" />
             </Badge>
           </div>
@@ -104,31 +104,32 @@
           </span>
         </div>
         <div style="overflow-y: auto;width:100%;height:370px">
-          <div style="text-align: center;margin-top:20px;"  v-for="friendmessage in friendmessages" >
+          <div style="text-align: center;margin-top:20px;" v-for="friendmessage in friendmessages">
             <span style="color:#aaa;">{{friendmessage.createdAt | timefilter('MM-DD HH:mm')}}</span>
             <div style="width:470px; height:100px;margin:0 auto;border:1px solid #eee;border-radius:5px">
               <div class="demo-avatar" style="float:left;margin:30px 0px 30px 20px;">
-                <Identicon  shape="square" icon="person" size="large" :_text="friendmessage.creatorId == userId?friendmessage.receiver.nickName:friendmessage.creator.nickName" />
+                <Identicon shape="square" icon="person" size="large" :_text="friendmessage.creatorId == userId?friendmessage.receiver.nickName:friendmessage.creator.nickName"
+                />
               </div>
-              <div v-if='friendmessage.creatorId == userId'style="float:left;margin:30px 0px 30px 0px;">
+              <div v-if='friendmessage.creatorId == userId' style="float:left;margin:30px 0px 30px 0px;">
                 <Button type="text" style="color:#278DE9">{{friendmessage.receiver.nickName}}</Button>
                 <span v-if='friendmessage.result == "AUTHENTICATION"'>已通知他添加你为好友</span>
                 <span v-if='friendmessage.result == "SUCCESS"'>已添加你为好友</span>
                 <span v-if='friendmessage.result == "FAILED"'>已拒绝你为好友</span>
               </div>
-               <div v-if='friendmessage.receiverId == userId'style="float:left;margin:30px 0px 30px 0px;">
+              <div v-if='friendmessage.receiverId == userId' style="float:left;margin:30px 0px 30px 0px;">
                 <Button type="text" style="color:#278DE9">{{friendmessage.creator.nickName}}</Button>
                 <span>添加你为好友</span>
               </div>
-              <div  v-if='friendmessage.creatorId == userId' style="float:right;margin:30px 20px 30px 0px;">
-                <span v-if='friendmessage.result == "AUTHENTICATION"' style="color:#C5C5C5" >等待验证</span>
-                <span  v-if='friendmessage.result == "SUCCESS"' style="color:#C5C5C5">已添加</span>
+              <div v-if='friendmessage.creatorId == userId' style="float:right;margin:30px 20px 30px 0px;">
+                <span v-if='friendmessage.result == "AUTHENTICATION"' style="color:#C5C5C5">等待验证</span>
+                <span v-if='friendmessage.result == "SUCCESS"' style="color:#C5C5C5">已添加</span>
                 <span v-if='friendmessage.result == "FAILED"' style="color:#C5C5C5">已拒绝</span>
               </div>
-               <div  v-if='friendmessage.receiverId == userId' style="float:right;margin:30px 20px 30px 0px;">
+              <div v-if='friendmessage.receiverId == userId' style="float:right;margin:30px 20px 30px 0px;">
                 <Button v-if='friendmessage.result == "AUTHENTICATION"' type="success" @click='resolve(friendmessage.id,"SUCCESS")'>同意</Button>
                 <Button v-if='friendmessage.result == "AUTHENTICATION"' type="error" @click='resolve(friendmessage.id,"FAILED")'>拒绝</Button>
-                <span  v-if='friendmessage.result == "SUCCESS"' style="color:#C5C5C5">已添加</span>
+                <span v-if='friendmessage.result == "SUCCESS"' style="color:#C5C5C5">已添加</span>
                 <span v-if='friendmessage.result == "FAILED"' style="color:#C5C5C5">已拒绝</span>
               </div>
             </div>
@@ -178,23 +179,31 @@
   </div>
 </template>
 <script>
-import Cookies from 'js-cookie'
-import {identicon} from 'sosnail'
-import Identicon from '../avatar/Identicon'
+  import Cookies from 'js-cookie'
+  import {
+    identicon
+  } from 'sosnail'
+  import Identicon from '../avatar/Identicon'
   export default {
-    components:{
-    Identicon
+    components: {
+      Identicon
     },
     data() {
       return {
         modal6: false,
-        loading: true,
         friend: false,
+        loading: false,
         friendMenuType: 'default',
         friendMobile: '',
-        friendmessages:[],
-        userId:Cookies.get('userId')
+        friendmessages: [],
+        userId: Cookies.get('userId')
       }
+    },
+    computed: {
+      friendmessageCount() {
+        console.log('1231',this.$store.getters.friendMessageCount)
+        return this.$store.getters.friendMessageCount
+      },
     },
     methods: {
       asyncOK() {
@@ -205,25 +214,33 @@ import Identicon from '../avatar/Identicon'
         })
       },
       changMenu(type) {
+        console.log(' friendmessageCount', this.$store.state.friendMessageCount)
         if (type == 'NEWFRIEND') {
+           this.$socket.emit('readFriendMessages', (err, result) => {
+              this.$store.commit('SET_UNREADMESSAGE',0);
+              console.log('friendmessageCount',this.$store.state.friendMessageCount)
+          });
           this.$socket.emit('getFriendMessages', (err, result) => {
             this.friendMenuType = type;
-            this.friendmessages=result.datas;
-            console.log('friendmessage',result);
+            this.friendmessages = result.datas;
+            console.log('friendmessage', result);
           });
-        }else{
-            this.friendMenuType = type;
+        } else {
+          this.friendMenuType = type;
         }
       },
-      resolve(messageId,prompt){
-        this.$socket.emit('resolveFriendMessage',{messageId:messageId,prompt:prompt},(err, result) => {
-            if(err){
-              this.$Notice.error({
+      resolve(messageId, prompt) {
+        this.$socket.emit('resolveFriendMessage', {
+          messageId: messageId,
+          prompt: prompt
+        }, (err, result) => {
+          if (err) {
+            this.$Notice.error({
               title: '请求出错',
               desc: err.msg
-              });
-            };
-            this.changMenu('NEWFRIEND');
+            });
+          };
+          this.changMenu('NEWFRIEND');
         });
       }
     }

@@ -15,14 +15,7 @@ const messages = {
   },
   mutations: {
     SOCKET_CONNECT: (state, status) => {
-      console.log('connect success!');
-      state.connect = true
-    },
-    SOCKET_NEWFRIEND: (state, message) => {
-      console.log('SOCKET_NEWFRIEND',message);
-      message.title ='新的好友';
-      message.content =message[0].creator.nickName+'请求添加你为好友'
-      notification(message)
+      state.connect = true;
     }
   },
   actions: {
@@ -40,7 +33,11 @@ const messages = {
         Vue.prototype.$socket.query.mobile = Cookies.get('mobile');
         Vue.prototype.$socket.connect();
       }
-    }
+    },
+    socket_socketConnect:(context,message)=>{
+      context.dispatch('getFriendMessageCount');
+    },
+
   }
 }
 
