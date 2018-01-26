@@ -2,7 +2,7 @@
   <div style="height:100%">
     <Row style="height:100%;">
       <Col span='7' class="scroll" style="height:100%; background:#ffffff;border-right:1px solid #eee;overflow-y: scroll;">
-      <div style='height:60px;border-bottom:1px solid #eee;position:relative;padding:10px; ' v-for=' chatUser in chatList'>
+      <div style='height:60px;border-bottom:1px solid #eee;position:relative;padding:10px; 'v-if='chatList.length >0' v-for=' chatUser in chatList'>
         <div class="demo-avatar" style="position:absoulte;left:10px; display: flex;width:190px">
         <Identicon shape="circle"  :_text="chatUser.chatUser.nickName" size="large" />
           <div style="margin-left:10px">
@@ -11,7 +11,7 @@
             </h3>
             <span style='overflow:hidden; text-overflow:ellipsis;
                           display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1;'>
-               {{chatUser.chatRoom.chatMessages?chatUser.chatRoom.chatMessages[0].content :''}}
+               {{chatUser.chatRoom.chatMessages.length>0?chatUser.chatRoom.chatMessages[0].content :''}}
             </span>
           </div>
         </div>
@@ -33,6 +33,7 @@
     },
     computed: {
       chatList() {
+        console.log(this.$store.getters.friendList)
         return this.$store.getters.friendList
       }
     },
