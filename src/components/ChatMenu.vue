@@ -9,7 +9,7 @@
                 <MenuItem name="3"><span style="padding:8px"><Icon type="grid" size='30'></Icon></span></MenuItem>
             </div>
              <div style="margin-top: -55px;float: right; margin-right:20px;height:32px;">
-                <Identicon shape="circle" icon="person" size="large" :_text="user.nickName"
+                <Identicon shape="circle" icon="person" :_text="user.nickName"
                 />
             </div>
         </Menu>
