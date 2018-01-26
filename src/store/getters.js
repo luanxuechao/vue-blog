@@ -6,6 +6,7 @@ const getters = {
   email: state => state.user.email,
   username: state => state.user.username,
   mobile: state => state.user.mobile,
-  friendMessageCount: state =>state.friendMessages.friendMessageCount
+  friendMessageCount: state =>state.friendMessages.friendMessageCount,
+  friendList: state=>state.messages.friendList
 };
 export default getters

@@ -18,7 +18,7 @@
         }
         // Sort.init()
         // var s = init(['栾学超','1231','Chevalier','黄诗人']);
-        console.log(init(['栾学超','1231','Chevalier','黄诗人']));
+        // console.log(init(['栾学超','1231','Chevalier','黄诗人']));
       }
     }
   }

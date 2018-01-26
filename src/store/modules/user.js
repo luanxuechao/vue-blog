@@ -30,7 +30,8 @@ const user = {
   actions: {
     // 用户名登录
     LoginByMobile({
-      commit
+      commit,
+      dispatch
     }, userInfo) {
       const mobile = userInfo.mobile.trim();
       return new Promise((resolve, reject) => {
@@ -44,6 +45,7 @@ const user = {
           commit('SET_NAME', data.username)
           commit('SET_USERID', data.id)
           commit('SET_MOBILE', mobile)
+          dispatch('getFriendList')
           // commit('SET_AVATAR', data.avatar ? URL + data.avatar.url : defaultAvatar)
           resolve()
         }).catch(error => {

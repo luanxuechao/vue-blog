@@ -76,11 +76,11 @@ function query(text) {
     return arrRslt;
 }
 
-export function init(array,callback) {
-   return  buildTextData(array);
+export function init(array,key,callback) {
+   return  buildTextData(array,key);
 }
 
-function buildTextData(arr){
+function buildTextData(arr,key){
     var textData = [{ tag: "A", textArray: [] },
                { tag: "B", textArray: [] },
                { tag: "C", textArray: [] },
@@ -112,17 +112,17 @@ function buildTextData(arr){
     var temABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
 
     for (var i = 0; i < arr.length; i++ ){
-        var text = arr[i];
+        var text = arr[i][key];
         var firstChar = text.substr(0, 1);
-        var reg = query(firstChar)[0];
+        var reg = query(firstChar)[0].toUpperCase();
         var temIndex = temABC.indexOf(reg);
         if(temIndex == -1 ){
           temIndex = textData.length-1;
         }
-        textData[temIndex].textArray.push(text);
+        textData[temIndex].textArray.push(arr[i]);
     }
    let temData = {};
-    temData.textData = textData;
+    temData = textData;
     return temData;
 }
 

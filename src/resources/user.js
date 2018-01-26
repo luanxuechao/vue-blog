@@ -35,3 +35,10 @@ export function logout(){
     method: 'post'
   });
 }
+
+export function getFriendList(){
+  return httpServer({
+    url: 'ChatRooms/findChatRooms',
+    method: 'get'
+  });
+}

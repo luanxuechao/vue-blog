@@ -23,7 +23,7 @@ const messages = {
         if(err){
           vueObj.$Notice.error({
             title: '请求出错',
-            desc: err.msg
+            desc: err.message
           });
         }
         context.commit('SET_UNREADMESSAGE',result.count);

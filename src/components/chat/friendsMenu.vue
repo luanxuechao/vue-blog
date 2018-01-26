@@ -19,75 +19,16 @@
       </div>
       <!-- 朋友列表-->
       <div>
-        <div>
-          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
-          <div v-on:click='changMenu("PERSONAL")' class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+        <div v-for='friend in friendList' v-if='friend.textArray.length > 0'>
+          <span style="margin-left:10px;background-color:#eee;display:block;">{{friend.tag}}</span>
+          <div v-for ='person in friend.textArray'v-on:click='changMenu("PERSONAL")' class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
             <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #877d68;margin-top:4px;" icon="pin" shape="square" />
+             <Identicon style="margin-top:4px;" shape="square"  :_text="person.remark"/>
             </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
-            </span>
-          </div>
-          <div class='person' v-on:click='changMenu("PERSONAL")' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
-            <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #87d068;margin-top:4px;" icon="location" shape="square" />
-            </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
+            <span style="display:block;margin-top: -50px;margin-left: 50px;">{{person.remark}}
             </span>
           </div>
         </div>
-        <div>
-          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
-          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
-            <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #87d07d;margin-top:4px;" icon="locked" shape="square" />
-            </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
-            </span>
-          </div>
-          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
-            <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #9f4f68;margin-top:4px;" icon="spoon" shape="square" />
-            </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
-            </span>
-          </div>
-        </div>
-        <div>
-          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
-          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
-            <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #87d09f;margin-top:4px;" icon="pound" shape="square" />
-            </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
-            </span>
-          </div>
-          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
-            <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #875168;margin-top:4px;" icon="toggle" shape="square" />
-            </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
-            </span>
-          </div>
-        </div>
-        <div>
-          <span style="margin-left:10px;background-color:#eee;display:block;">A</span>
-          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
-            <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #87d068;margin-top:4px;" icon="person" shape="square" />
-            </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">AAA
-            </span>
-          </div>
-          <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
-            <div class="demo-avatar" style="margin-left:10px;">
-              <Avatar style="background-color: #87d068;margin-top:4px;" icon="person" shape="square" />
-            </div>
-            <span style="display:block;margin-top: -50px;margin-left: 50px;">A123456
-            </span>
-          </div>
-        </div>
-
       </div>
       </Col>
       <Col span='18' style="height:100%; background:#fff;display:flex;justify-content:center;">
@@ -180,6 +121,7 @@
 </template>
 <script>
   import Cookies from 'js-cookie'
+    import {init } from '@/utils/sortPickerView'
   import {
     identicon
   } from 'sosnail'
@@ -201,15 +143,24 @@
     },
     computed: {
       friendmessageCount() {
-        console.log('1231',this.$store.getters.friendMessageCount)
         return this.$store.getters.friendMessageCount
       },
+      friendList(){
+
+        return  init(this.$store.getters.friendList,'remark')
+      }
     },
     methods: {
       asyncOK() {
         this.$socket.emit('addFriend', {
           mobile: this.friendMobile
         }, (err, result) => {
+            if (err) {
+            this.$Notice.error({
+              title: '请求出错',
+              desc: err.message
+            });
+          };
           this.modal6 = false;
         })
       },
@@ -237,7 +188,7 @@
           if (err) {
             this.$Notice.error({
               title: '请求出错',
-              desc: err.msg
+              desc: err.message
             });
           };
           this.changMenu('NEWFRIEND');
