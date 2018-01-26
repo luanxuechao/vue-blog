@@ -276,7 +276,6 @@
 import  "../assets/css/article.css"
 <script>
 import Cookies from 'js-cookie'
-import {identicon} from 'sosnail'
 import Identicon from './avatar/Identicon'
 export default {
   name: 'HelloWorld',

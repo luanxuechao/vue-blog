@@ -21,7 +21,7 @@
       <div>
         <div v-for='friend in friendList' v-if='friend.textArray.length > 0'>
           <span style="margin-left:10px;background-color:#eee;display:block;">{{friend.tag}}</span>
-          <div v-for ='person in friend.textArray'v-on:click='changMenu("PERSONAL")' class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+          <div v-for ='person in friend.textArray'v-on:click='getPersonal(person)' class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
             <div class="demo-avatar" style="margin-left:10px;">
              <Identicon style="margin-top:4px;" shape="square"  :_text="person.remark"/>
             </div>
@@ -78,18 +78,19 @@
         </div>
       </div>
       <!-- 详细信息-->
-      <div v-if='friendMenuType == "PERSONAL"' style="width:90%;height:53px;border-bottom:1px solid #eee;text-align:center;">
+      <div v-if='friendMenuType == "PERSONAL" && personal' style="width:90%;height:53px;border-bottom:1px solid #eee;text-align:center;">
         <p style="line-height: 53px;font-size:14px">详细信息</p>
         <div style="margin-top:20px;">
-          <Avatar shape="square" icon="person" src="https://i.loli.net/2017/08/21/599a521472424.jpg" class='person-avastar' />
+        <Identicon class='person-avastar' shape="square" icon="person" size="large" :_text="personal.chatUser.nickName"
+              />
         </div>
         <h1 style="line-height: 53px;">
-          AAA裕成景观
-          <Icon type="male" color='#6DA6C6' size='14'></Icon>
-          <Icon type="female" color='#CF6D69' size='14'></Icon>
+          {{personal.chatUser.nickName}}
+          <Icon type="male" color='#6DA6C6' size='14' v-if='personal.chatUser.sex == "MALE"'></Icon>
+          <Icon type="female" color='#CF6D69' size='14'  v-if='personal.chatUser.sex == "FEMALE"'></Icon>
         </h1>
         <p style="font-size:14px;color:#888888; line-height: 40px;">
-          这是一段座右铭
+         {{personal.chatUser.motto}}
         </p>
         <div>
           <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
@@ -97,7 +98,7 @@
               备注：
             </span>
             <span>
-              王八蛋adsda
+               {{personal.remark}}
             </span>
           </p>
           <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
@@ -137,6 +138,7 @@
         loading: false,
         friendMenuType: 'default',
         friendMobile: '',
+        personal:null,
         friendmessages: [],
         userId: Cookies.get('userId')
       }
@@ -179,6 +181,10 @@
         } else {
           this.friendMenuType = type;
         }
+      },
+      getPersonal(person){
+          this.personal=person;
+          this.friendMenuType = 'PERSONAL'
       },
       resolve(messageId, prompt) {
         this.$socket.emit('resolveFriendMessage', {

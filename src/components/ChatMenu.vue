@@ -9,7 +9,8 @@
                 <MenuItem name="3"><span style="padding:8px"><Icon type="grid" size='30'></Icon></span></MenuItem>
             </div>
              <div style="margin-top: -55px;float: right; margin-right:20px;height:32px;">
-                   <Avatar shape="circle" icon="person" src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                <Identicon shape="circle" icon="person" size="large" :_text="user.nickName"
+                />
             </div>
         </Menu>
         <div style='height: 420px;'>
@@ -20,7 +21,20 @@
   </div>
 </template>
 <script>
+import Cookies from 'js-cookie'
+import Identicon from './avatar/Identicon'
 export default {
+
+  components:{
+    Identicon
+  },
+  data(){
+    return{
+      user:{
+          nickName:Cookies.get('nickName')
+      },
+    }
+  },
   methods: {
     goDemo(routerName) {
       this.$router.push({ path: `/${routerName}` });

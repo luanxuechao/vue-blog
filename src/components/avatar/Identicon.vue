@@ -19,9 +19,14 @@ export default {
             }
         },
         data(){
-          return{
+        return{
             text:identicon({'text': this._text})
           }
+        },
+        watch:{
+            _text(val, oldVal){
+                this.text =identicon({'text': val})
+            }
         }
    }
 </script>

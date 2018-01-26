@@ -41,6 +41,7 @@ const messages = {
     },
     socket_socketConnect:(context,message)=>{
       context.dispatch('getFriendMessageCount');
+      context.dispatch('getFriendList');
     },
     getFriendList:(context)=>{
       return new Promise((resolve, reject) => {
