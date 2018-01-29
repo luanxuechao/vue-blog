@@ -167,16 +167,13 @@
         })
       },
       changMenu(type) {
-        console.log(' friendmessageCount', this.$store.state.friendMessageCount)
         if (type == 'NEWFRIEND') {
            this.$socket.emit('readFriendMessages', (err, result) => {
-              this.$store.commit('SET_UNREADMESSAGE',0);
-              console.log('friendmessageCount',this.$store.state.friendMessageCount)
+            this.$store.commit('SET_UNREADMESSAGE',0);
           });
           this.$socket.emit('getFriendMessages', (err, result) => {
             this.friendMenuType = type;
             this.friendmessages = result.datas;
-            console.log('friendmessage', result);
           });
         } else {
           this.friendMenuType = type;
@@ -197,6 +194,7 @@
               desc: err.message
             });
           };
+          this.$store.dispatch('getFriendList')
           this.changMenu('NEWFRIEND');
         });
       }

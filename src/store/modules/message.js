@@ -43,6 +43,9 @@ const messages = {
       context.dispatch('getFriendMessageCount');
       context.dispatch('getFriendList');
     },
+    socket_socketNewchatroom:(context,message)=>{
+      context.dispatch('getFriendList');
+    },
     getFriendList:(context)=>{
       return new Promise((resolve, reject) => {
         getFriendList().then(response => {

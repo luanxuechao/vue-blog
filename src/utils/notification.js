@@ -24,6 +24,7 @@ const notification = message => {
           } else {
             Notification.requestPermission();
             console.log('没有权限,用户拒绝:Notification');
+            
             vue.$Notice.info({
               title,
               desc: content
