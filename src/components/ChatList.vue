@@ -33,7 +33,6 @@
     },
     computed: {
       chatList() {
-        console.log(this.$store.getters.friendList)
         return this.$store.getters.friendList
       }
     },
