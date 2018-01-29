@@ -9,7 +9,7 @@
       <div v-on:click='changMenu("NEWFRIEND")'>
         <div class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
           <div class="demo-avatar-badge" style="margin-left:10px;">
-            <Badge :dot='!!friendmessageCount' >
+            <Badge :dot='!!friendmessageCount'>
               <Avatar style="background-color: #EEA150;" icon="person-add" shape="square" />
             </Badge>
           </div>
@@ -21,9 +21,9 @@
       <div>
         <div v-for='friend in friendList' v-if='friend.textArray.length > 0'>
           <span style="margin-left:10px;background-color:#eee;display:block;">{{friend.tag}}</span>
-          <div v-for ='person in friend.textArray'v-on:click='getPersonal(person)' class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
+          <div v-for='person in friend.textArray' v-on:click='getPersonal(person)' class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
             <div class="demo-avatar" style="margin-left:10px;">
-             <Identicon style="margin-top:4px;" shape="square"  :_text="person.remark"/>
+              <Identicon style="margin-top:4px;" shape="square" :_text="person.remark" />
             </div>
             <span style="display:block;margin-top: -50px;margin-left: 50px;">{{person.remark}}
             </span>
@@ -40,8 +40,8 @@
       <div v-if='friendMenuType == "NEWFRIEND"'>
         <div style="height:40px;width:100%;border-bottom:1px solid #eee">
           <span style="line-height: 40px; margin: 20px auto; font-size:18px;margin-left:10px;font-weight:bold">好友验证消息</span>
-          <span style="margin-left:360px;">
-            <Icon type="ios-trash-outline" size='30' style="color:#278DE9"></Icon>
+          <span style="margin-left:360px;" @click="delMessge">
+            <Icon type="ios-trash-outline" size='30' style="color:#278DE9" ></Icon>
           </span>
         </div>
         <div style="overflow-y: auto;width:100%;height:370px">
@@ -81,16 +81,15 @@
       <div v-if='friendMenuType == "PERSONAL" && personal' style="width:90%;height:53px;border-bottom:1px solid #eee;text-align:center;">
         <p style="line-height: 53px;font-size:14px">详细信息</p>
         <div style="margin-top:20px;">
-        <Identicon class='person-avastar' shape="square" icon="person" size="large" :_text="personal.chatUser.nickName"
-              />
+          <Identicon class='person-avastar' shape="square" icon="person" size="large" :_text="personal.chatUser.nickName" />
         </div>
         <h1 style="line-height: 53px;">
           {{personal.chatUser.nickName}}
           <Icon type="male" color='#6DA6C6' size='14' v-if='personal.chatUser.sex == "MALE"'></Icon>
-          <Icon type="female" color='#CF6D69' size='14'  v-if='personal.chatUser.sex == "FEMALE"'></Icon>
+          <Icon type="female" color='#CF6D69' size='14' v-if='personal.chatUser.sex == "FEMALE"'></Icon>
         </h1>
         <p style="font-size:14px;color:#888888; line-height: 40px;">
-         {{personal.chatUser.motto}}
+          {{personal.chatUser.motto}}
         </p>
         <div>
           <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
@@ -98,7 +97,7 @@
               备注：
             </span>
             <span>
-               {{personal.remark}}
+              {{personal.remark}}
             </span>
           </p>
           <p style="font-size:12px;color:#888888;line-height: 20px;text-align:left;margin-left:180px;">
@@ -122,11 +121,14 @@
 </template>
 <script>
   import Cookies from 'js-cookie'
-    import {init } from '@/utils/sortPickerView'
+  import {
+    init
+  } from '@/utils/sortPickerView'
   import {
     identicon
   } from 'sosnail'
   import Identicon from '../avatar/Identicon'
+  import {delFriendMessage} from'@/resources/friendMessage'
   export default {
     components: {
       Identicon
@@ -138,8 +140,7 @@
         loading: false,
         friendMenuType: 'default',
         friendMobile: '',
-        personal:null,
-        friendmessages: [],
+        personal: null,
         userId: Cookies.get('userId')
       }
     },
@@ -147,17 +148,34 @@
       friendmessageCount() {
         return this.$store.getters.friendMessageCount
       },
-      friendList(){
-
-        return  init(this.$store.getters.friendList,'remark')
+      friendList() {
+        return init(this.$store.getters.friendList, 'remark')
+      },
+      friendmessages(){
+        return this.$store.getters.friendMessages
       }
     },
     methods: {
+     delMessge(){
+       const _this = this;
+        this.$Modal.confirm({
+        title: '删除好友消息',
+        content: `你确定删除所有好友消息？`,
+        onOk () {
+        delFriendMessage().then(res=>{
+          _this.$Message.success("删除成功");
+          _this.$store.dispatch('getFriendMessage');
+        }).catch((err)=>{
+          _this.$Message.error('删除出了点问题', err);
+        });
+        }
+      })
+     },
       asyncOK() {
         this.$socket.emit('addFriend', {
           mobile: this.friendMobile
         }, (err, result) => {
-            if (err) {
+          if (err) {
             this.$Notice.error({
               title: '请求出错',
               desc: err.message
@@ -168,20 +186,18 @@
       },
       changMenu(type) {
         if (type == 'NEWFRIEND') {
-           this.$socket.emit('readFriendMessages', (err, result) => {
-            this.$store.commit('SET_UNREADMESSAGE',0);
+          this.$socket.emit('readFriendMessages', (err, result) => {
+            this.$store.commit('SET_UNREADMESSAGE', 0);
           });
-          this.$socket.emit('getFriendMessages', (err, result) => {
-            this.friendMenuType = type;
-            this.friendmessages = result.datas;
-          });
+          this.$store.dispatch('getFriendMessage');
+          this.friendMenuType = type;
         } else {
           this.friendMenuType = type;
         }
       },
-      getPersonal(person){
-          this.personal=person;
-          this.friendMenuType = 'PERSONAL'
+      getPersonal(person) {
+        this.personal = person;
+        this.friendMenuType = 'PERSONAL'
       },
       resolve(messageId, prompt) {
         this.$socket.emit('resolveFriendMessage', {

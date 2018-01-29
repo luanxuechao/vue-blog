@@ -42,6 +42,7 @@ const messages = {
     socket_socketConnect:(context,message)=>{
       context.dispatch('getFriendMessageCount');
       context.dispatch('getFriendList');
+      context.dispatch('getFriendMessage');
     },
     socket_socketNewchatroom:(context,message)=>{
       context.dispatch('getFriendList');

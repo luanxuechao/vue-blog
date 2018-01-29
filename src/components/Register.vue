@@ -102,7 +102,7 @@
           register(this.registerForm)
             .then(res => {
               this.$Message.success("注册成功")
-               this.$router.push({ path: "/Login" });
+              this.$router.push({ path: "/Login" });
             })
             .catch((err) => {
               this.$Message.error('注册出了点问题', err);

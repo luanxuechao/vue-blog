@@ -3,6 +3,7 @@ import Vue from 'vue'
 const messages = {
   state: {
     friendMessageCount: 0,
+    friendMessages:[]
   },
   mutations: {
     SOCKET_NEWFRIEND: (state, message) => {
@@ -14,7 +15,10 @@ const messages = {
     },
     SET_UNREADMESSAGE:(state,count)=>{
       state.friendMessageCount =count;
-    }
+    },
+    SET_FRIENDMESSAGES:(state,datas)=>{
+      state.friendMessages = datas;
+    },
   },
   actions: {
     getFriendMessageCount:(context, status)=>{
@@ -27,6 +31,12 @@ const messages = {
           });
         }
         context.commit('SET_UNREADMESSAGE',result.count);
+      });
+    },
+    getFriendMessage:(context,status)=>{
+      let vueObj = new Vue();
+      Vue.prototype.$socket.emit('getFriendMessages', (err, result) => {
+        context.commit('SET_FRIENDMESSAGES',result.datas);
       });
     }
   }
