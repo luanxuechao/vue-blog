@@ -1,76 +1,94 @@
 <template>
   <div style="height:100%">
-    <Row style='height:290px;'>
-      <Col span='24' style="height:100%;">
-      <div style="height:40px;background:#eee;">
-        <span style="line-height: 40px; margin: 20px auto; font-size:18px;margin-left:10px;font-weight:bold">Chevalier</span>
-        <span style="margin-left:370px;">
-          <Icon type="ios-information-outline" size='20'></Icon>
-        </span>
-      </div>
-      <div style="overflow-y: auto;height:250px;">
-        <div class="left-box">
-          <div class="avatar">
-            <Avatar style="background-color: #87d068" icon="person" size="small" />
+    <div v-if='chatRoomId' style="height:100%">
+      <Row style='height:290px;'>
+        <Col span='24' style="height:100%;">
+        <div style="height:40px;background:#eee;width:100%">
+          <span style="line-height: 40px; margin: 20px auto; font-size:18px;margin-left:10px;font-weight:bold">{{remark}}</span>
+          <div style='margin-top:-30px;margin-left:450px'>
+            <Icon type="ios-information-outline" size='20'></Icon>
           </div>
-          <p style="width:100%;padding:2px 10px;">
-            asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
-          </p>
         </div>
-        <div class="left-box">
-          <div class="avatar">
-            <Avatar style="background-color: #87d068" icon="person" size="small" />
+        <div style="overflow-y: auto;height:250px;width:500px;">
+          <div v-if='chatMessages.length >0' v-for='chatMessage in chatMessages'>
+            <div class="left-box" v-if='chatMessage.sender.id != userId'>
+              <div class="avatar">
+                <Avatar style="background-color: #87d068" icon="person" size="small" />
+              </div>
+              <p style="width:100%;padding:2px 10px;">
+               {{chatMessage.messageContent}}
+              </p>
+            </div>
+            <div class="right-box" v-if='chatMessage.sender.id == userId'>
+              <div class="avatar">
+                <Avatar style="background-color: #87d068" icon="person" size="small" />
+              </div>
+              <p style="width:100%;padding:2px 10px;">
+                 {{chatMessage.messageContent}}
+              </p>
+            </div>
           </div>
-          <p style="width:100%;padding:2px 10px;">
-            asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
-          </p>
         </div>
-        <div class="left-box">
-          <div class="avatar">
-            <Avatar style="background-color: #87d068" icon="person" size="small" />
-          </div>
-          <p style="width:100%;padding:2px 10px;">
-            asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
-          </p>
-        </div>
-        <div class="left-box">
-          <div class="avatar">
-            <Avatar style="background-color: #87d068" icon="person" size="small" />
-          </div>
-          <p style="width:100%;padding:2px 10px;">
-            asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
-          </p>
-        </div>
-        <div class="left-box">
-          <div class="avatar">
-            <Avatar style="background-color: #87d068" icon="person" size="small" />
-          </div>
-          <p style="width:100%;padding:2px 10px;">
-            asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
-          </p>
-        </div>
-        <div class="right-box">
-          <div class="avatar">
-            <Avatar style="background-color: #87d068" icon="person" size="small" />
-          </div>
-          <p style="width:100%;padding:2px 10px;">
-            asdadadasdasdasddassadasddasdsad123121231321231232131231313123213212312312313221231
-          </p>
-        </div>
-      </div>
-      </Col>
-    </Row>
-    <Row>
-      <Col span='24' style="height:100%">
-      <Input  type="textarea" :autosize="{minRows: 5,maxRows: 5}"></Input>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+      <Row>
+        <Col span='24' style="height:100%">
+        <Input type="textarea" :autosize="{minRows: 5,maxRows: 5}" @on-enter="sendMessage" v-model='message'></Input>
+        </Col>
+      </Row>
+    </div>
+    <div v-if='!chatRoomId' style="height:100%;width:100%;display:flex;justify-content:center;align-items:center;">
+      <Icon type="chatboxes" size='100' style="color:#E1E1E1"></Icon>
+    </div>
   </div>
 </template>
-<script>
-  export default {
-    methods:{
 
+<script>
+  import Cookies from 'js-cookie'
+  export default {
+    props: {
+      chatRoomId: {
+        type: String
+      },
+      remark: {
+        type: String
+      }
+    },
+
+    watch: {
+      chatRoomId(val, oldVal) {
+        this.$socket.emit('getHistoryMessage', {
+          chatRoomId: this.chatRoomId,
+          createdAt: new Date().getTime(),
+          limit: 5
+        }, (err, messages) => {
+          this.chatMessages = messages.reverse();
+        });
+      }
+    },
+    data() {
+      return {
+        message: null,
+        userId: Cookies.get('userId'),
+        chatMessages: []
+      }
+    },
+    methods: {
+      sendMessage() {
+        let data = {
+          chatRoomId: this.chatRoomId,
+          messageContent: this.message.trim(),
+          messageType: 'MESSAGE'
+        }
+        this.$socket.emit('message', data, (err, message) => {
+          if (err) {
+            this.$Message.error('消息出错', err.message);
+          }
+          this.message = null;
+          this.chatMessages.push(message);
+        });
+        return;
+      }
     }
   };
 
@@ -90,13 +108,13 @@
     font-weight: 500;
     word-wrap: break-word;
     margin-bottom: 10px;
-    /*  */
+
   }
 
   .left-box .avatar {
-    position: absolute;
+     position: absolute;
     top: 10px;
-    left: -50px;
+    left:-50px;
   }
 
   .left-box:before {
