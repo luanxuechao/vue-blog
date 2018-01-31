@@ -5,4 +5,5 @@ function timefilter(value, formatString) {
   return moment(value).format(formatString);
 };
 
+
 export default timefilter;
