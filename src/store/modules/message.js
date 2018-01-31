@@ -7,21 +7,38 @@ import {
 } from '../../common/config'
 import notification from '@/utils/notification'
 import Cookies from 'js-cookie'
-import {getFriendList} from '../../resources/user'
+import {
+  getFriendList
+} from '../../resources/user'
 const messages = {
   state: {
     connect: false,
-    message: null,
+    messages: [],
     changed: null,
-    friendList:[]
+    friendList: [],
+    chatRoomId:null
   },
   mutations: {
     SOCKET_CONNECT: (state, status) => {
       state.connect = true;
     },
-    SET_FRIENDS:(state, list)=>{
-      state.friendList =list
-    }
+    SET_FRIENDS: (state, list) => {
+      state.friendList = list
+    },
+    SET_MESSAGE: (state, message) => {
+      if(state.chatRoomId == message.chatRoomId){
+        state.messages.push(message);
+      }
+    },
+    SET_MESSAGES: (state, messages) => {
+      state.messages = state.messages.concat(messages);
+    },
+    CLEAR_MESSAGES:(state)=>{
+      state.messages=[];
+    },
+    SET_CHATROOMID: (state, chatRoomId) => {
+      state.chatRoomId = chatRoomId;
+    },
   },
   actions: {
     SocketConnect: (context, status) => {
@@ -39,26 +56,49 @@ const messages = {
         Vue.prototype.$socket.connect();
       }
     },
-    socket_socketConnect:(context,message)=>{
+    socket_socketConnect: (context, message) => {
       context.dispatch('getFriendMessageCount');
       context.dispatch('getFriendList');
       context.dispatch('getFriendMessage');
+      context.dispatch('joinRooms');
     },
-    socket_socketNewchatroom:(context,message)=>{
+    socket_socketNewchatroom: (context, message) => {
       context.dispatch('getFriendList');
     },
-    getFriendList:(context)=>{
+    joinRooms: (context) => {
+      Vue.prototype.$socket.emit('joinRooms',function(err,isJoin){
+        console.log('isJoin',isJoin);
+      })
+    },
+    getFriendList: (context) => {
       return new Promise((resolve, reject) => {
         getFriendList().then(response => {
 
-          context.commit('SET_FRIENDS',response.data);
+          context.commit('SET_FRIENDS', response.data);
           resolve()
         }).catch(error => {
           reject(error)
         })
       });
+    },
+    socket_socketMessage: (context, message) => {
+      context.commit('SET_MESSAGE',message[0]);
+      notification({title:message[0].sender.nickName,content:message[0].messageContent});
+    },
+    getMessages: (context, chatRoomId) => {
+      context.commit('CLEAR_MESSAGES');
+      context.commit('SET_CHATROOMID',chatRoomId);
+      Vue.prototype.$socket.emit('getHistoryMessage', {
+        chatRoomId: chatRoomId,
+        createdAt: new Date().getTime(),
+        limit: 5
+      }, (err, messages) => {
+        context.commit('SET_MESSAGES', messages.reverse());
+      });
+    },
+    setMessage:(context,message) =>{
+      context.commit('SET_MESSAGE',message);
     }
-
   }
 }
 

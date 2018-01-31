@@ -9,7 +9,7 @@
             <Icon type="ios-information-outline" size='20'></Icon>
           </div>
         </div>
-        <div style="overflow-y: auto;height:250px;width:500px;margin: 0 auto;">
+        <div id="dialogue_box" style="overflow-y: auto;height:250px;width:500px;margin: 0 auto;">
         <div v-if='chatMessages.length >0' v-for='chatMessage in chatMessages'>
          <div class="bubbleItem" v-if='chatMessage.sender.id != userId'>
             <span class="bubble leftBubble">
@@ -17,7 +17,7 @@
               <span class="bottomLevel"></span>
               <span class="topLevel"></span>
               <span class="chatAvatar">
-                <Avatar style="background-color: #87d068;" icon="person" size="small" />
+                <Identicon   :_text="chatMessage.sender.nickName" size="small"/>
               </span>
             </span>
           </div>
@@ -29,64 +29,11 @@
               <span class="bottomLevel"></span>
               <span class="topLevel"></span>
               <span class="chatAvatar">
-                <Avatar style="background-color: #87d068;" icon="person" size="small" />
+                <Identicon   :_text="chatMessage.sender.nickName" size="small"/>
               </span>
             </span>
           </div>
         </div>
-       <!--    <div class="bubbleItem">
-
-            <span class="bubble leftBubble">
-              老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！
-              <span class="bottomLevel"></span>
-              <span class="topLevel"></span>
-              <span class="chatAvatar">
-                <Avatar style="background-color: #87d068;" icon="person" size="small" />
-              </span>
-            </span>
-          </div>
-          <div class="bubbleItem clearfix">
-            <span style="font-family: Arial, Helvetica, sans-serif;">
-            </span>
-            <span class="bubble rightBubble">
-              老师，你好！
-              <span class="bottomLevel"></span>
-              <span class="topLevel"></span>
-              <span class="chatAvatar">
-                <Avatar style="background-color: #87d068;" icon="person" size="small" />
-              </span>
-            </span>
-          </div>
-          <div class="bubbleItem clearfix">
-            <span style="font-family: Arial, Helvetica, sans-serif;">
-            </span>
-            <span class="bubble rightBubble">
-              老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！ 老师，你好！
-              <span class="bottomLevel"></span>
-              <span class="topLevel"></span>
-              <span class="chatAvatar">
-                <Avatar style="background-color: #87d068;" icon="person" size="small" />
-              </span>
-            </span>
-          </div>-->
-          <!--  <div v-if='chatMessages.length >0' v-for='chatMessage in chatMessages'>
-            <div class="left-box" v-if='chatMessage.sender.id != userId'>
-              <div class="avatar">
-                <Avatar style="background-color: #87d068" icon="person" size="small" />
-              </div>
-              <p style="width:100%;padding:2px 10px;">
-               {{chatMessage.messageContent}}
-              </p>
-            </div>
-            <div class="right-box" v-if='chatMessage.sender.id == userId'>
-              <div class="avatar">
-                <Avatar style="background-color: #87d068" icon="person" size="small" />
-              </div>
-              <p style="width:100%;padding:2px 10px;">
-                 {{chatMessage.messageContent}}
-              </p>
-            </div>
-          </div>-->
         </div>
         </Col>
       </Row>
@@ -104,6 +51,7 @@
 
 <script>
   import Cookies from 'js-cookie'
+  import Identicon from '../avatar/Identicon'
   export default {
     props: {
       chatRoomId: {
@@ -113,23 +61,29 @@
         type: String
       }
     },
-
+    components: {
+      Identicon
+    },
+    computed: {
+      chatMessages() {
+        return this.$store.getters.messages;
+      }
+    },
     watch: {
       chatRoomId(val, oldVal) {
-        this.$socket.emit('getHistoryMessage', {
-          chatRoomId: this.chatRoomId,
-          createdAt: new Date().getTime(),
-          limit: 5
-        }, (err, messages) => {
-          this.chatMessages = messages.reverse();
-        });
+        this.$store.dispatch('getMessages',val);
       }
+    },
+    updated:function(){
+      this.$nextTick(function(){
+      var div = document.getElementById('dialogue_box');
+        div.scrollTop = div.scrollHeight;
+      })
     },
     data() {
       return {
         message: null,
-        userId: Cookies.get('userId'),
-        chatMessages: []
+        userId: Cookies.get('userId')
       }
     },
     methods: {
@@ -144,6 +98,9 @@
             this.$Message.error('消息出错', err.message);
           }
           this.message = null;
+          if(!this.chatMessages){
+              this.chatMessages=[];
+          }
           this.chatMessages.push(message);
         });
         return;
