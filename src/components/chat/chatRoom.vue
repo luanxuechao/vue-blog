@@ -162,14 +162,15 @@
     position: relative;
     margin-right: 50px;
     float: right;
-    border: 1px solid #aaa;
+    border: 1px solid #D7EADD;
+    background-color: #D7EADD;
   }
 
   .rightBubble .bottomLevel {
     position: absolute;
     bottom: 11px;
     right: -10px;
-    border-bottom: 10px solid #aaa;
+    border-bottom: 10px solid #D7EADD;
     border-right: 10px solid transparent;
   }
 
@@ -177,7 +178,7 @@
     position: absolute;
     bottom: 12px;
     right: -8px;
-    border-bottom: 10px solid #fff;
+    border-bottom: 10px solid #D7EADD;
     border-right: 10px solid transparent;
     z-index: 100;
   }
