@@ -39,6 +39,25 @@ const messages = {
     SET_CHATROOMID: (state, chatRoomId) => {
       state.chatRoomId = chatRoomId;
     },
+    SET_UNREADMESSAGENUM:(state,chatMessage) => {
+      for(let i =0;i<state.friendList.length;i++){
+        if(state.friendList[i].chatRoomId == chatMessage.chatRoomId){
+          if(chatMessage.sender.id != Cookies.get('userId')){
+            state.friendList[i].UnReadMessagesNum++;
+          }
+          state.friendList[i].chatRoom.chatMessages[0]=chatMessage;
+          break;
+        }
+      }
+    },
+    CLEAR_UNREADMESSAGENUM:(state,chatRoomId)=>{
+      for(let i =0;i<state.friendList.length;i++){
+        if(state.friendList[i].chatRoomId == chatRoomId){
+          state.friendList[i].UnReadMessagesNum=0;
+          break;
+        }
+      }
+    },
   },
   actions: {
     SocketConnect: (context, status) => {
@@ -83,17 +102,26 @@ const messages = {
     },
     socket_socketMessage: (context, message) => {
       context.commit('SET_MESSAGE',message[0]);
+      context.commit('SET_UNREADMESSAGENUM',message[0]);
       notification({title:message[0].sender.nickName,content:message[0].messageContent});
     },
     getMessages: (context, chatRoomId) => {
       context.commit('CLEAR_MESSAGES');
       context.commit('SET_CHATROOMID',chatRoomId);
+      context.dispatch('readMessages',chatRoomId);
       Vue.prototype.$socket.emit('getHistoryMessage', {
         chatRoomId: chatRoomId,
         createdAt: new Date().getTime(),
         limit: 5
       }, (err, messages) => {
         context.commit('SET_MESSAGES', messages.reverse());
+      });
+    },
+    readMessages:(context,chatRoomId)=> {
+      Vue.prototype.$socket.emit('readChatMessage', {
+        chatRoomId: chatRoomId,
+      }, (err, messages) => {
+        context.commit('CLEAR_UNREADMESSAGENUM',chatRoomId);
       });
     },
     setMessage:(context,message) =>{

@@ -75,9 +75,11 @@
       }
     },
     updated:function(){
-      this.$nextTick(function(){
+      const _this = this
+      this.$nextTick(()=>{
       var div = document.getElementById('dialogue_box');
         div.scrollTop = div.scrollHeight;
+        this.$store.dispatch('readMessages',this.chatRoomId);
       })
     },
     data() {
