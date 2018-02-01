@@ -10,6 +10,7 @@ import Cookies from 'js-cookie'
 import {
   getFriendList
 } from '../../resources/user'
+import util from '../../utils/util'
 const messages = {
   state: {
     connect: false,
@@ -27,11 +28,13 @@ const messages = {
     },
     SET_MESSAGE: (state, message) => {
       if(state.chatRoomId == message.chatRoomId){
-        state.messages.push(message);
+        state.messages =  util.addDateTimeChatMessage(message,state.messages,false);
       }
     },
     SET_MESSAGES: (state, messages) => {
-      state.messages = state.messages.concat(messages);
+      for(let i =0 ; i<messages.length; i++){
+        state.messages = util.addDateTimeChatMessage(messages[i],state.messages,true);
+      }
     },
     CLEAR_MESSAGES:(state)=>{
       state.messages=[];
@@ -111,10 +114,9 @@ const messages = {
       context.dispatch('readMessages',chatRoomId);
       Vue.prototype.$socket.emit('getHistoryMessage', {
         chatRoomId: chatRoomId,
-        createdAt: new Date().getTime(),
         limit: 5
       }, (err, messages) => {
-        context.commit('SET_MESSAGES', messages.reverse());
+        context.commit('SET_MESSAGES', messages);
       });
     },
     readMessages:(context,chatRoomId)=> {

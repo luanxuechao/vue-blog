@@ -9,32 +9,39 @@
             <Icon type="ios-information-outline" size='20'></Icon>
           </div>
         </div>
-        <div id="dialogue_box" style="overflow-y: auto;height:250px;width:500px;margin: 0 auto;">
-        <div v-if='chatMessages.length >0' v-for='chatMessage in chatMessages'>
-         <div class="bubbleItem" v-if='chatMessage.sender.id != userId'>
-            <span class="bubble leftBubble">
-              {{chatMessage.messageContent}}
-              <span class="bottomLevel"></span>
-              <span class="topLevel"></span>
-              <span class="chatAvatar">
-                <Identicon   :_text="chatMessage.sender.nickName" size="small"/>
+        <Scroll :on-reach-top="handleReachTop" style='margin-bottom:10px;'>
+          <div id="dialogue_box" style="overflow-y: auto;height:230px;width:500px;margin: 0 auto;">
+            <div v-if='chatMessages.length >0' v-for='chatMessage in chatMessages'>
+              <div v-if= 'chatMessage.messageType == "DATETIME" '>
+              <span  style='text-align: center;display:block;color:#B2B2B2'>
+              {{chatMessage.messageContent | chatMessageTimeFilter('HH:mm:SS')}}
               </span>
-            </span>
+              </div>
+              <div class="bubbleItem" v-if='chatMessage.messageType != "DATETIME" && chatMessage.sender.id != userId  '>
+                <span class="bubble leftBubble">
+                  {{chatMessage.messageContent}}
+                  <span class="bottomLevel"></span>
+                  <span class="topLevel"></span>
+                  <span class="chatAvatar">
+                    <Identicon :_text="chatMessage.sender.nickName" size="small" />
+                  </span>
+                </span>
+              </div>
+              <div class="bubbleItem clearfix" v-if='chatMessage.messageType != "DATETIME" && chatMessage.sender.id == userId  '>
+                <span style="font-family: Arial, Helvetica, sans-serif;">
+                </span>
+                <span class="bubble rightBubble">
+                  {{chatMessage.messageContent}}
+                  <span class="bottomLevel"></span>
+                  <span class="topLevel"></span>
+                  <span class="chatAvatar">
+                    <Identicon :_text="chatMessage.sender.nickName" size="small" />
+                  </span>
+                </span>
+              </div>
+            </div>
           </div>
-           <div class="bubbleItem clearfix" v-if='chatMessage.sender.id == userId'>
-            <span style="font-family: Arial, Helvetica, sans-serif;">
-            </span>
-            <span class="bubble rightBubble">
-              {{chatMessage.messageContent}}
-              <span class="bottomLevel"></span>
-              <span class="topLevel"></span>
-              <span class="chatAvatar">
-                <Identicon   :_text="chatMessage.sender.nickName" size="small"/>
-              </span>
-            </span>
-          </div>
-        </div>
-        </div>
+        </Scroll>
         </Col>
       </Row>
       <Row>
@@ -66,29 +73,64 @@
     },
     computed: {
       chatMessages() {
+        if (this.$store.getters.messages.length > 0 && (!this.lastMessage ||
+            this.lastMessage.id != this.$store.getters.messages[this.$store.getters.messages.length - 1].id)) {
+          this.isScroll = true;
+          this.lastMessage = this.$store.getters.messages[this.$store.getters.messages.length - 1];
+        }
         return this.$store.getters.messages;
       }
     },
     watch: {
       chatRoomId(val, oldVal) {
-        this.$store.dispatch('getMessages',val);
+        this.$store.dispatch('getMessages', val);
       }
     },
-    updated:function(){
+    updated: function() {
       const _this = this
-      this.$nextTick(()=>{
-      var div = document.getElementById('dialogue_box');
-        div.scrollTop = div.scrollHeight;
-        this.$store.dispatch('readMessages',this.chatRoomId);
+      this.$nextTick(() => {
+        var div = document.getElementById('dialogue_box');
+        if (_this.isScroll) {
+          _this.isScroll = false;
+          div.scrollTop = div.scrollHeight;
+          _this.$store.dispatch('readMessages', _this.chatRoomId);
+        }
       })
     },
     data() {
       return {
         message: null,
-        userId: Cookies.get('userId')
+        userId: Cookies.get('userId'),
+        lastMessage: null,
+        isScroll: true,
+        isLoading: false
       }
     },
     methods: {
+      handleReachTop() {
+        const _this = this;
+        if (_this.isLoading) {
+          return;
+        }
+        _this.isLoading = true;
+        return new Promise((resolve, reject) => {
+          _this.$socket.emit('getHistoryMessage', {
+            chatRoomId: _this.chatRoomId,
+            createdAt: new Date(_this.chatMessages[0].createdAt).getTime(),
+            limit: 5
+          }, (err, messages) => {
+            _this.isLoading = false;
+            if (err) {
+              reject(err);
+            }
+            if (messages.length == 0) {
+              _this.$Message.warning("历史消息加载完了");
+            }
+            _this.$store.commit('SET_MESSAGES', messages);
+            resolve();
+          });
+        })
+      },
       sendMessage() {
         let data = {
           chatRoomId: this.chatRoomId,
@@ -100,8 +142,8 @@
             this.$Message.error('消息出错', err.message);
           }
           this.message = null;
-          if(!this.chatMessages){
-              this.chatMessages=[];
+          if (!this.chatMessages) {
+            this.chatMessages = [];
           }
           this.chatMessages.push(message);
         });
