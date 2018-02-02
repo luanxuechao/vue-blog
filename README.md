@@ -1,5 +1,5 @@
 # vue-blog
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg?style=flat-square)](https://github.com/luanxuechao/vue-blog)
+[![Travis](https://img.shields.io/badge/Build-passing-brightgreen.svg?style=flat-square)](https://github.com/luanxuechao/vue-blog)
 > A Vue.js project
 
 ## Build Setup
