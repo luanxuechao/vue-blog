@@ -1,5 +1,9 @@
 # vue-blog
 [![Travis](https://img.shields.io/badge/Build-passing-brightgreen.svg?style=flat-square)](https://github.com/luanxuechao/vue-blog)
+[![node](https://img.shields.io/badge/node-v8.1.4-blue.svg?style=flat-square)](https://github.com/luanxuechao/vue-blog)
+[![socket.io](https://img.shields.io/badge/socket.io-%3E%3D2.0.0-blue.svg?style=flat-square)](https://github.com/luanxuechao/vue-blog)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/luanxuechao/vue-blog)
+
 > A Vue.js project
 
 ## Build Setup
