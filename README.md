@@ -15,8 +15,7 @@
 - socket.io
 
 ## 功能列表
-- [x] 详细设计
-- [x]登录
+- [x] 登录
 - [x] 注册
 - [x] 根据姓名生成随机头像
 - [x] 聊天
@@ -28,6 +27,7 @@
 - [ ] 语音消息、文件消息、图片消息
 - [ ] 语音通话、视频通话
 - [ ] 个人中心
+- [ ] 修改备注
 
 ## 快速开始
 
@@ -39,3 +39,9 @@ npm install
 npm run dev
 
 ```
+## 联系我
+|Author|Chevalier|
+|---|---
+|E-mail|luanxuechaowd@gmailcom
+### 微信
+![](https://github.com/luanxuechao/vue-blog/blob/master/demo/weChat.png)
