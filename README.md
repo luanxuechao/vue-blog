@@ -9,6 +9,17 @@
 ## 演示
 ![](https://github.com/luanxuechao/vue-blog/blob/master/demo/demo.gif?raw=true)
 
+## 快速开始
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:8080
+npm run dev
+
+```
+
 ## 技术栈
 - [vueJS](https://cn.vuejs.org/)
 - [iview](https://www.iviewui.com/)
@@ -29,16 +40,6 @@
 - [ ] 个人中心
 - [ ] 修改备注
 
-## 快速开始
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-```
 ## 联系我
 |Author|Chevalier|
 |---|---
