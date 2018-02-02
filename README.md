@@ -43,6 +43,6 @@ npm run dev
 ## 联系我
 |Author|Chevalier|
 |---|---
-|E-mail|luanxuechaowd@gmailcom
+|E-mail|luanxuechaowd@gmail.com
 ### 微信
 ![](https://github.com/luanxuechao/vue-blog/blob/master/demo/weChat.png)
