@@ -12,7 +12,7 @@
 ## 技术栈
 - [vueJS](https://cn.vuejs.org/)
 - [iview](https://www.iviewui.com/)
-- socket.io
+- [socket.io](https://socket.io/)
 
 ## 功能列表
 - [x] 登录
