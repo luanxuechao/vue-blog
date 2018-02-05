@@ -76,7 +76,7 @@
             </Menu>
             <router-view />
             <div class="layout-copy" v-on:click="goTimeLine">
-                2011-2016 &copy; TalkingData
+                2017-2018 &copy; 皖ICP备17016996号-1
             </div>
         </div>
     </div>

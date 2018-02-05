@@ -48,3 +48,18 @@
 .left-personal{
   position: relative;min-width:320px;min-height: 50px; margin-top: 15px;overflow: hidden;background: #fff;border-radius: 4px;
 }
+.chat-container {
+  height: 100vh;
+  background-color: #2d3a4b;
+  background-image: url("../images/bg_login.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.chat-content {
+  position: fixed;
+  top: 50%;
+  width: 700px;
+  height: 470px;
+  background-color: #fff;
+  transform: translateY(-50%);
+}

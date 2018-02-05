@@ -57,21 +57,3 @@ export default {
 </script>
 
 
-<style rel="stylesheet/scss" lang="scss">
-.chat-container {
-  height: 100vh;
-  background-color: #2d3a4b;
-  background-image: url("../assets/images/bg_login.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.chat-content {
-  position: fixed;
-  top: 50%;
-  width: 700px;
-  height: 470px;
-  background-color: #fff;
-  // padding: 35px 35px 15px 35px;
-  transform: translateY(-50%);
-}
-</style>
