@@ -41,6 +41,7 @@ const user = {
           Cookies.set('userId', data.id)
           Cookies.set('nickName', data.nickName)
           Cookies.set('mobile', data.mobile)
+          Cookies.set('user',data);
           commit('SET_TOKEN', data.token)
           commit('SET_NAME', data.username)
           commit('SET_USERID', data.id)

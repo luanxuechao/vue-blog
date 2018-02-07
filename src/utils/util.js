@@ -178,3 +178,5 @@ function enableAddTime(c1, c2,length) {
   return Boolean(Math.abs(c2 - c1) > 5 * 60 * 1000 || length % 10 == 0);
 }
 export default util;
+
+Date.prototype.toJSON = function () { return this.toLocaleString(); }

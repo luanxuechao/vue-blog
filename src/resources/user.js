@@ -42,3 +42,19 @@ export function getFriendList(){
     method: 'get'
   });
 }
+
+export function getPersonalInfo(id){
+  return httpServer({
+    url: `BlogUsers/${id}`,
+    method: 'get'
+  });
+}
+
+export function updatePersonalInfo(id,user){
+  return httpServer({
+    url: `BlogUsers/${id}`,
+    method: 'put',
+    data: Qs.stringify(user)
+  });
+}
+
