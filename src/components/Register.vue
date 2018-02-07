@@ -144,11 +144,15 @@
   }
 
   .login-container {
-    height: 100vh;
+    height: 120vh;
+    margin: 0;
+    padding: 0;
     background-color: #2d3a4b;
     background-image: url('../assets/images/bg_login.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
     .ivu-input-group-append {
       background-color: #fff;
       color: #4A90E2;
@@ -209,6 +213,7 @@
       background-color: #fff;
       padding: 35px 35px 15px 35px;
       margin: 120px auto;
+      overflow-y:visible
     }
 
     .el-form-item {
