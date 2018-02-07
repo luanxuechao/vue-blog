@@ -105,7 +105,7 @@
               地区：
             </span>
             <span>
-              上海闵行
+              {{personal.chatUser.address?personal.chatUser.address.province.value:''}}{{personal.chatUser.address?personal.chatUser.address.city.value:''}}
             </span>
           </p>
         </div>

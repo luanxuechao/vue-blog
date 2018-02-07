@@ -56,6 +56,10 @@
             </Col>
           </Row>
         </FormItem>
+        <FormItem label="地区">
+          <v-distpicker :placeholders="placeholders" :province="user.address.province.value" :city="user.address.city.value" :area="user.address.area.value"
+            @selected="onSelected"></v-distpicker>
+        </FormItem>
         <FormItem label="个性签名">
           <Input v-model="user.motto" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
         </FormItem>
@@ -66,6 +70,7 @@
 <script>
   import Cookies from 'js-cookie'
   import Identicon from './avatar/Identicon'
+  import VDistpicker from 'v-distpicker'
   import {
     getPersonalInfo,
     updatePersonalInfo
@@ -73,14 +78,25 @@
   export default {
 
     components: {
-      Identicon
+      Identicon,
+      VDistpicker
     },
     data() {
       return {
         personModal: false,
         user: {
-          nickName: Cookies.get('nickName')
+          nickName: Cookies.get('nickName'),
+          address: {
+            province: {},
+            city: {},
+            area: {}
+          }
         },
+        placeholders: {
+          province: '- 省 -',
+          city: '- 市 -',
+          area: '- 区 -',
+        }
       }
     },
     methods: {
@@ -88,6 +104,9 @@
         this.$router.push({
           path: `/${routerName}`
         });
+      },
+      onSelected(data) {
+        this.user.address = data;
       },
       asyncOK() {
         const _this = this;
@@ -102,8 +121,15 @@
       goPersonal() {
         const _this = this;
         getPersonalInfo(Cookies.get('userId')).then((res) => {
-          res.data.birthday = new Date(res.data.birthday);
-          _this.user = res.data
+          res.data.birthday = res.data.birthday?new Date(res.data.birthday):null;
+          _this.user = res.data;
+          if (!_this.user.address) {
+            _this.user.address = {
+              province: {},
+              city: {},
+              area: {}
+            };
+          }
           _this.personModal = true;
         }).catch((err) => {
 
