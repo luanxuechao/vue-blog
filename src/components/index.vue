@@ -60,10 +60,10 @@
                     <Icon type="ios-navigate"></Icon>
                     首页
                     </MenuItem>
-                    <MenuItem name="2"  >
+                  <!--  <MenuItem name="2"  >
                     <Icon type="ios-calendar" ></Icon>
                     时间轴
-                    </MenuItem>
+                    </MenuItem> -->
                     <MenuItem name="3">
                     <Icon type="social-javascript"></Icon>
                     案例

@@ -38,12 +38,13 @@
     },
     data(){
       return  {
-        chatRoomId:null,
-        remark:null,
+        chatRoomId:this.$route.query.chatRoomId?this.$route.query.chatRoomId:null,
+        remark:this.$route.query.remark?this.$route.query.remark:null,
       }
     },
     computed: {
       chatList() {
+
         console.log('this.$store.getters.friendList',this.$store.getters.friendList);
         return this.$store.getters.friendList
       }

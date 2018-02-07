@@ -86,6 +86,11 @@
         this.$store.dispatch('getMessages', val);
       }
     },
+    mounted:function(){
+      if(this.chatRoomId){
+        this.$store.dispatch('getMessages', this.chatRoomId);
+      }
+    },
     updated: function() {
       const _this = this
       this.$nextTick(() => {

@@ -23,7 +23,7 @@
           <span style="margin-left:10px;background-color:#eee;display:block;">{{friend.tag}}</span>
           <div v-for='person in friend.textArray' v-on:click='getPersonal(person)' class='person' style='height:40px;width:100%;border-bottom:1px solid #eee;line-height:40px;'>
             <div class="demo-avatar" style="margin-left:10px;">
-              <Identicon style="margin-top:4px;" shape="square" :_text="person.remark" />
+              <Identicon style='margin-bottom:3px' shape="square" :_text="person.remark" />
             </div>
             <span style="display:block;margin-top: -50px;margin-left: 50px;">{{person.remark}}
             </span>
@@ -109,7 +109,7 @@
             </span>
           </p>
         </div>
-        <Button style="width:150px;margin-top:20px;" type='primary'>发送消息</Button>
+        <Button style="width:150px;margin-top:20px;" type='primary'@click='goChatRoom(personal)'>发送消息</Button>
       </div>
       </Col>
     </Row>
@@ -198,6 +198,10 @@
       getPersonal(person) {
         this.personal = person;
         this.friendMenuType = 'PERSONAL'
+      },
+      goChatRoom(personal){
+         this.$router.push({ path: "/ChatMenu/ChatList",query:{chatRoomId:personal.chatRoomId,remark:personal.remark}});
+
       },
       resolve(messageId, prompt) {
         this.$socket.emit('resolveFriendMessage', {
