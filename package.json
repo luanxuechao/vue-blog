@@ -12,6 +12,7 @@
   "dependencies": {
     "@xkeshi/vue-countdown": "^0.4.0",
     "axios": "^0.17.1",
+    "compression-webpack-plugin": "^1.1.6",
     "github-markdown-css": "^2.9.0",
     "iview": "^2.8.0",
     "js-cookie": "^2.2.0",

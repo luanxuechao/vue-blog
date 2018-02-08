@@ -8,7 +8,7 @@
             <img src="../assets/images/default.png" alt="">
           </a>
           <h2 class="article-tip">
-            <a  v-on:click="goArticle">这是标题</a>
+            <a >这是标题</a>
           </h2>
           <p class="article-abstract">
             这是文章内容的简介部分！！！！！！！！阿斯达啊撒 啊是 阿斯达 阿斯达 的飒飒大胆看上了你懒惰了哪里你了那里看到哪里；是你的；案例可能的；按啦啦你拉倒了你懒死了哪里你看了哪里阿兰的李娜；李达康哪里看你兰兰你拉拉手哪里哪里呢
@@ -364,9 +364,6 @@ export default {
         return return_array;
       }
       this.randomMovieList = getArrayItems(this.movieList, 5);
-    },
-    goArticle(){
-      this.$router.push({ path: '/ArticleDetail' });
     },
     goLogin(){
       this.$router.push({ path: '/Login' });
